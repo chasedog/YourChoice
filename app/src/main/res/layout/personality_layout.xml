@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+   <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textAppearance="?android:attr/textAppearanceLarge"
+     android:text="Tell me about yourself"
+     android:id="@+id/textView2"
+     android:layout_alignParentTop="true"
+     android:layout_centerHorizontal="true"
+     android:layout_marginTop="46dp"/>
+
+   <RadioGroup
+     android:layout_width="483dp"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:layout_below="@+id/textView2"
+     android:layout_alignStart="@+id/textView2">
+
+      <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Male"
+        android:id="@+id/radioButton2"
+        android:layout_below="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginEnd="102dp"
+        android:checked="true"/>
+
+      <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Female"
+        android:id="@+id/radioButton"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginStart="129dp"
+        android:checked="false"/>
+
+   </RadioGroup>
+
+   <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:textAppearance="?android:attr/textAppearanceLarge"
+     android:text="Your personality traits (choose up to 3)"
+     android:id="@+id/textView3"/>
+
+   <LinearLayout
+     android:orientation="horizontal"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alcoholic"
+        android:id="@+id/personality_alcoholic"
+        android:checked="false"
+        android:textOff="Alcoholic"
+        android:textOn="Alcoholic"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aggressive"
+        android:id="@+id/personality_aggressive"
+        android:checked="false"
+        android:textOff="Aggressive"
+        android:textOn="Aggressive"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brave"
+        android:id="@+id/personality_brave"
+        android:checked="false"
+        android:textOff="Brave"
+        android:textOn="Brave"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Childish"
+        android:id="@+id/personality_childish"
+        android:checked="false"
+        android:textOff="Childish"
+        android:textOn="Childish"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Competitive"
+        android:id="@+id/personality_competitive"
+        android:checked="false"
+        android:textOff="Competitive"
+        android:textOn="Competitive"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humble"
+        android:id="@+id/personality_humble"
+        android:checked="false"
+        android:textOff="Humble"
+        android:textOn="Humble"/>
+
+   </LinearLayout>
+
+   <LinearLayout
+     android:orientation="horizontal"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mischievous"
+        android:id="@+id/personality_mischievous"
+        android:checked="false"
+        android:textOff="Mischievous"
+        android:textOn="Mischievous"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Romantic"
+        android:id="@+id/personality_romantic"
+        android:checked="false"
+        android:textOff="Romantic"
+        android:textOn="Romantic"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shy"
+        android:id="@+id/personality_shy"
+        android:checked="false"
+        android:textOff="Shy"
+        android:textOn="Shy"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart"
+        android:id="@+id/personality_smart"
+        android:checked="false"
+        android:textOff="Smart"
+        android:textOn="Smart"/>
+
+      <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Talkative"
+        android:id="@+id/personality_talkative"
+        android:checked="false"
+        android:textOn="Talkative"
+        android:textOff="Talkative"/>
+
+   </LinearLayout>
+
+   <Button
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Start"
+     android:id="@+id/startGame"
+     />
+
+</LinearLayout>
