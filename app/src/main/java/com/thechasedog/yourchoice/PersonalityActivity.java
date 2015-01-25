@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Chase Dog on 1/24/2015.
  */
@@ -25,20 +28,21 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
     public ToggleButton smartBtn;
     public ToggleButton talkativeBtn;
 
-    private int checkedCount = 0;
+    private List<CompoundButton> selectedBtns;
+    private int numSelections = 0;
 
+    private int checkedCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        selectedBtns = new ArrayList<CompoundButton>();
 
         setContentView(R.layout.personality_layout);
         startGame = (Button)findViewById(R.id.startGame);
 
         alcoholicBtn = (ToggleButton)findViewById(R.id.personality_alcoholic);
         aggressiveBtn = (ToggleButton)findViewById(R.id.personality_aggressive);
-
-
         braveBtn = (ToggleButton)findViewById(R.id.personality_brave);
         childishBtn = (ToggleButton)findViewById(R.id.personality_childish);
         competitiveBtn = (ToggleButton)findViewById(R.id.personality_competitive);
@@ -72,13 +76,21 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked ) checkedCount++;
-        else checkedCount--;
+        if (isChecked && !selectedBtns.contains(buttonView)) {
+            if (numSelections >= 3) {
+                selectedBtns.get(numSelections % 3).setChecked(false);
+                selectedBtns.set(numSelections % 3, buttonView);
+            }
+            else {
+                selectedBtns.add(numSelections, buttonView);
+            }
+
+            numSelections++;
+        }
 
         switch(buttonView.getId()) {
             case R.id.personality_aggressive:
                 if (isChecked) {
-                    humbleBtn.setChecked(false);
                     humbleBtn.setEnabled(false);
                 }
                 else {
@@ -87,9 +99,7 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 break;
             case R.id.personality_shy:
                 if (isChecked) {
-                    talkativeBtn.setChecked(false);
                     talkativeBtn.setEnabled(false);
-                    braveBtn.setChecked(false);
                     braveBtn.setEnabled(false);
                 }
                 else {
@@ -99,44 +109,28 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 break;
             case R.id.personality_talkative:
                 if (isChecked) {
-                    shyBtn.setChecked(false);
                     shyBtn.setEnabled(false);
                 }
-                else {
+                else if (!braveBtn.isChecked()){
                     shyBtn.setEnabled(true);
                 }
                 break;
             case R.id.personality_brave:
                 if (isChecked) {
-                    shyBtn.setChecked(false);
                     shyBtn.setEnabled(false);
                 }
-                else {
+                else if (!talkativeBtn.isChecked()){
                     shyBtn.setEnabled(true);
                 }
+                break;
             case R.id.personality_humble:
                 if (isChecked) {
-                    braveBtn.setChecked(false);
-                    braveBtn.setEnabled(false);
+                    aggressiveBtn.setEnabled(false);
                 }
                 else {
-                    braveBtn.setEnabled(true);
+                    aggressiveBtn.setEnabled(true);
                 }
                 break;
-        }
-
-        if (checkedCount == 3) {
-            alcoholicBtn.setEnabled(false);
-            aggressiveBtn.setEnabled(false);
-            braveBtn.setEnabled(false);
-            childishBtn.setEnabled(false);
-            competitiveBtn.setEnabled(false);
-            humbleBtn.setEnabled(false);
-            mischievousBtn.setEnabled(false);
-            romanticBtn.setEnabled(false);
-            shyBtn.setEnabled(false);
-            smartBtn.setEnabled(false);
-            talkativeBtn.setEnabled(false);
         }
     }
 
