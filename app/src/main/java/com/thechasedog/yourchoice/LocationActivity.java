@@ -26,6 +26,7 @@ public class LocationActivity extends Activity {
         setContentView(R.layout.location_layout);
 
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
+        timeText = (TextView)findViewById(R.id.timeText);
         setTimeText(DialogueActivity.convertTimeToString(PersonalityActivity.game.time));
         for (Location loc : PersonalityActivity.game.availableLocations) {
             Button button = getButton(loc.name);

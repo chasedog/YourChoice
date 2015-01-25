@@ -25,12 +25,12 @@ Text "Let's go to our new place."
 
 Id Comp1
 Requirements Competitive, Debra1, TalkingToDebra, AtBusStop
-Modifiers CompetitiveOpt
+Modifiers CompetitiveOpt, Pic_Debra_Mad
 Text "I don't know where you're going, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
-Modifiers AggressiveOpt
+Modifiers AggressiveOpt, Pic_Debra_Punched
 Text Punch *
 
 Id Smart1
@@ -40,7 +40,7 @@ Text "I brought a map. Let's look at our options."
 
 Id Alcoholic1
 Requirements Alcoholic, Debra1, TalkingToDebra, AtBusStop
-Modifiers AlcoholicOpt
+Modifiers AlcoholicOpt, Pic_Debra_Neutral
 Text "I need a drink."
 
 Id Shy1
@@ -50,7 +50,7 @@ Text "Can you ask the woman over there where we could eat?"
 
 Id Shy2
 Requirements Shy, Debra2, TalkingToDebra, AtBusStop
-Modifiers ShyOpt, Mo'sDinerAvail
+Modifiers ShyOpt, Mo'sDinerAvail, Pic_Debra_Neutral
 Text "Can't you ask her?"
 
 Id Talk1

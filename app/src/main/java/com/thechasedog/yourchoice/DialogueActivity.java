@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,12 +31,14 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     private TextView locationText;
     private List<Option> options;
     private static int numClicksPerDay = 0;
+    private ImageView dialogueImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogue);
-        dialogueManager = new DialogueManager(PersonalityActivity.game.player);
+        dialogueImage = (ImageView)findViewById(R.id.dialoguePic);
+        dialogueManager = new DialogueManager(PersonalityActivity.game.player, dialogueImage);
         locationText = (TextView)findViewById(R.id.locationText);
         speakerText = (TextView)findViewById(R.id.speakerText);
         dialogueText = (TextView)findViewById(R.id.dialogueText);
