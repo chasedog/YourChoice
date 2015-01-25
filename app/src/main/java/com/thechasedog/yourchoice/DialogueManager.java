@@ -98,7 +98,7 @@ public class DialogueManager {
                         }
                     }
 
-                    isInvalid = (name == "");
+                    isInvalid = (name.isEmpty());
                 }
                 else {
                     if (tempRequirements.contains(req) || permRequirements.contains(req)) {
@@ -135,18 +135,22 @@ public class DialogueManager {
     public List<Option> getOptions () {
         List<Option> currOptions = new ArrayList<Option>();
         boolean isInvalid;
+        boolean isWildCard;
 
         for (Option option : allOptions) {
             isInvalid = false;
+            isWildCard = false;
 
             for (String req : option.requirements) {
                 if (req.contains("*")) {
+                    isWildCard = true;
                     String firstPart = req.substring(0, req.indexOf('*'));
                     String name = "";
                     for (String tempReq : tempRequirements) {
                         if (tempReq.contains(firstPart)) {
                             name = tempReq.substring(firstPart.length());
                             currOptions.add(new Option(option, name));
+                            break;
                         }
                     }
 
@@ -160,11 +164,17 @@ public class DialogueManager {
                 }
             }
 
-            if (!isInvalid) {
+            if (!isInvalid && !isWildCard) {
                 currOptions.add(option);
             }
         }
 
         return currOptions;
+    }
+
+    public void selectOption (Option option) {
+        for (String modifier : option.modifiers) {
+            tempRequirements.add(modifier);
+        }
     }
 }

@@ -1,9 +1,11 @@
 package com.thechasedog.yourchoice;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,13 +16,14 @@ import java.util.List;
 /**
  * Created by Chase Dog on 1/24/2015.
  */
-public class DialogueActivity extends Activity {
+public class DialogueActivity extends Activity implements View.OnClickListener {
     private TextView speakerText;
     private TextView dialogueText;
     private LinearLayout choicesLayout;
     private Dialogue currentDialogue;
     private DialogueManager dialogueManager;
     private TextView locationText;
+    private List<Option> options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,12 @@ public class DialogueActivity extends Activity {
         setSpeakerText(currentDialogue.title);
 
         setDialogueText(currentDialogue.text);
-        List<Option> options = dialogueManager.getOptions();
+        if (options != null) {
+            options.clear();
+        }
+
+        options = dialogueManager.getOptions();
+        choicesLayout.removeAllViewsInLayout();
         for (Option option : options) {
             choicesLayout.addView(getButton(option.text));
         }
@@ -50,11 +58,38 @@ public class DialogueActivity extends Activity {
         params.gravity = Gravity.CENTER_HORIZONTAL;
         button.setLayoutParams(params);
         button.setText(text);
+        button.setOnClickListener(this);
         return button;
     }
 
+    public void updateScreen() {
+        currentDialogue = dialogueManager.getNextDialogue();
+        setDialogueText(currentDialogue.text);
+        options.clear();
+        options = dialogueManager.getOptions();
+        choicesLayout.removeAllViewsInLayout();
+        for (Option option : options) {
+            choicesLayout.addView(getButton(option.text));
+        }
+        setLocationText(PersonalityActivity.game.currentLocation);
+    }
+
+    public void onClick (View view) {
+        String text = ((Button)view).getText().toString();
+        Option curOption = options.get(0);
+
+        for (Option option : options) {
+            if (option.text.equals(text)) {
+                curOption = option;
+                break;
+            }
+        }
+        dialogueManager.selectOption(curOption);
+        updateScreen();
+    }
+
     public void setSpeakerText(String text) {
-        speakerText.setText(text + ":");
+        speakerText.setText(text);
     }
     public void setSpeakerText(Person person) {
         setSpeakerText(person.firstName);
