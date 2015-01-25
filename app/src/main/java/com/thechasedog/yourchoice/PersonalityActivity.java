@@ -77,6 +77,7 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 game = ri.getGame();
                 game.allDialogues = ri.getDialogues();
                 game.options = ri.getOptions();
+                game.currentLocation = game.locations.get(0);
 
                 for (Location loc : game.locations) {
                     Log.d(loc.name, loc.toString());
@@ -86,6 +87,10 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 }
                 for (Dialogue p : game.allDialogues) {
                     Log.d("Dialogue to " + p.title, p.text);
+                }
+
+                for (Option o : game.options) {
+                    Log.d("Option", o.id + " " + o.text);
                 }
                 game.player = new Player("Mark", Person.Gender.MALE, 1, personality);
 

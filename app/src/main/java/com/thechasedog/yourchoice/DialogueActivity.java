@@ -20,6 +20,7 @@ public class DialogueActivity extends Activity {
     private LinearLayout choicesLayout;
     private Dialogue currentDialogue;
     private DialogueManager dialogueManager;
+    private TextView locationText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class DialogueActivity extends Activity {
         dialogueManager = new DialogueManager(PersonalityActivity.game.player);
         currentDialogue = dialogueManager.getNextDialogue();
 
+        locationText = (TextView)findViewById(R.id.locationText);
         speakerText = (TextView)findViewById(R.id.speakerText);
         dialogueText = (TextView)findViewById(R.id.dialogueText);
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
@@ -38,6 +40,7 @@ public class DialogueActivity extends Activity {
         for (Option option : options) {
             choicesLayout.addView(getButton(option.text));
         }
+        setLocationText(PersonalityActivity.game.currentLocation);
     }
 
     public Button getButton(String text) {
@@ -60,4 +63,5 @@ public class DialogueActivity extends Activity {
     public void setDialogueText(String text) {
         dialogueText.setText(text);
     }
+    public void setLocationText(Location loc) {locationText.setText(loc.name);}
 }

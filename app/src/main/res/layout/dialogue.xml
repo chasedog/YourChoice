@@ -38,14 +38,25 @@
      android:layout_height="match_parent"
      android:id="@+id/rightSide">
       <TextView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/timeOfDay"
         android:text="Early Morning"
-        android:textSize="24pt"/>
+        android:textSize="16pt"
+        android:layout_gravity="center_horizontal"/>
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bus stop"
+        android:id="@+id/locationText"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16pt"/>
+
       <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="366dp"
         android:layout_height="match_parent"
         android:id="@+id/choicesLayout"
         android:weightSum="1">

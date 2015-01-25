@@ -1,4 +1,7 @@
 LOCATIONS
+Name Bus Stop
+SubLocations
+
 Name Home
 SubLocations
 
@@ -30,9 +33,6 @@ Name Elementary School
 SubLocations Classroom, Dance Room, Office
 
 Name Reese Home
-SubLocations
-
-Name Bus Stop
 SubLocations
 
 Name Mo's Diner

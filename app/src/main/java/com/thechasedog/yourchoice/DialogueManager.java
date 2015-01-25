@@ -125,10 +125,13 @@ public class DialogueManager {
 
         for (Option option : allOptions) {
             isInvalid = false;
-            for (String req : option.requirements) {
-                if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
-                    isInvalid = true;
-                    break;
+
+            if (option.requirements != null) {
+                for (String req : option.requirements) {
+                    if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
+                        isInvalid = true;
+                        break;
+                    }
                 }
             }
 

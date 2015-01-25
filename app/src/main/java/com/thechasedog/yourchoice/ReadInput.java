@@ -42,7 +42,7 @@ public class ReadInput {
             String line;
             String[] toks;
             while ((line = br.readLine()) != null) {
-                toks = line.split(" ", 1);
+                toks = line.split(" ", 2);
                 if (toks.length > 0) {
                     command = toks[0];
                     if (toks.length > 1) {

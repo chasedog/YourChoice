@@ -11,7 +11,7 @@ public class Game {
     public Player player;
     public List<Dialogue> allDialogues;
     public List<Option> options;
-
+    public Location currentLocation;
 
     public Game() {
 
