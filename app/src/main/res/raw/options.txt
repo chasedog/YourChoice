@@ -21,7 +21,7 @@ Text "Let's go to our new place."
 Id Comp1
 Requirements Competitive, Debra1
 Modifiers CompetitiveOpt
-Text "I don't know what you're doing, but I'm going somewhere without you."
+Text "I don't know where you're going, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
@@ -45,7 +45,7 @@ Text "Can you ask the woman over there where we could eat?"
 
 Id Shy2
 Requirements Shy, Debra2
-Modifieres ShyOpt
+Modifiers ShyOpt, Mo'sDinerAvail
 Text "Can't you ask her?"
 
 Id Talk1

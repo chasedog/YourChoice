@@ -14,6 +14,7 @@ public class DialogueManager {
     private List<Option> allOptions;
     private List<String> tempRequirements;
     private List<String> permRequirements;
+    static boolean firstDialogue = true;
 
     public DialogueManager(Player player) {
         //Get all dialogues
@@ -79,6 +80,10 @@ public class DialogueManager {
     }
 
     public Dialogue getNextDialogue() {
+        if (firstDialogue) {
+            firstDialogue = false;
+        }
+
         int maxNumReqs = 0;
         Dialogue maxDialogue = allDialogues.get(0);
         int currNumReqs;
@@ -111,7 +116,7 @@ public class DialogueManager {
                 }
             }
 
-            if (!isInvalid && currNumReqs > maxNumReqs) {
+            if (!isInvalid && currNumReqs > maxNumReqs && !(permRequirements.contains(dialogue.id))) {
                 maxDialogue = dialogue;
                 maxNumReqs = currNumReqs;
             }
@@ -119,7 +124,7 @@ public class DialogueManager {
 
         if (maxDialogue instanceof PeopleDialogue) {
             tempRequirements.add("TalkingTo" + ((PeopleDialogue)maxDialogue).person.firstName);
-            tempRequirements.add(maxDialogue.id);
+            permRequirements.add(maxDialogue.id);
         }
         else {
             tempRequirements.add("Free");

@@ -30,25 +30,12 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogue);
         dialogueManager = new DialogueManager(PersonalityActivity.game.player);
-        currentDialogue = dialogueManager.getNextDialogue();
-
         locationText = (TextView)findViewById(R.id.locationText);
         speakerText = (TextView)findViewById(R.id.speakerText);
         dialogueText = (TextView)findViewById(R.id.dialogueText);
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
-        setSpeakerText(currentDialogue.title);
 
-        setDialogueText(currentDialogue.text);
-        if (options != null) {
-            options.clear();
-        }
-
-        options = dialogueManager.getOptions();
-        choicesLayout.removeAllViewsInLayout();
-        for (Option option : options) {
-            choicesLayout.addView(getButton(option.text));
-        }
-        setLocationText(PersonalityActivity.game.currentLocation);
+        updateScreen();
     }
 
     public Button getButton(String text) {
@@ -64,8 +51,11 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
 
     public void updateScreen() {
         currentDialogue = dialogueManager.getNextDialogue();
+        setSpeakerText(currentDialogue.title);
         setDialogueText(currentDialogue.text);
-        options.clear();
+        if (options != null) {
+            options.clear();
+        }
         options = dialogueManager.getOptions();
         choicesLayout.removeAllViewsInLayout();
         for (Option option : options) {
@@ -77,7 +67,6 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     public void onClick (View view) {
         String text = ((Button)view).getText().toString();
         Option curOption = options.get(0);
-
         for (Option option : options) {
             if (option.text.equals(text)) {
                 curOption = option;
@@ -91,6 +80,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     public void setSpeakerText(String text) {
         speakerText.setText(text);
     }
+
     public void setSpeakerText(Person person) {
         setSpeakerText(person.firstName);
     }
@@ -98,5 +88,6 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     public void setDialogueText(String text) {
         dialogueText.setText(text);
     }
+
     public void setLocationText(Location loc) {locationText.setText(loc.name);}
 }

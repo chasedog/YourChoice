@@ -10,22 +10,22 @@ Text "Okay. Why don't you ask that lady over there where we can eat."
 
 Id Debra3
 People Debra
-Requirements Debra1, Competitive, CompetitiveOpt
+Requirements Debra1, CompetitiveOpt
 Text "Fine. You can find your own way to our new place then." Debra storms off.
 
 Id Debra4
 People Debra
-Requirements Debra1, Aggressive, AggressiveOpt
+Requirements Debra1, AggressiveOpt
 Text *Gasp* "You fucking asshole! What the hell! FINE! You're on your own fucker! I hate you!" Debra storms off.
 
 Id Debra5
 People Debra
-Requirements Debra1, Shy, ShyOpt
+Requirements Debra1, ShyOpt
 Text *Sigh* "Fine. Hold on." Debra goes over to the woman and chats with her briefly before returning. "You shouldn't be so shy. She's really very nice. Anyways she says there's a place just down the road called Mo's Diner. They have food and drinks. Let's go."
 
 Id Debra6
 People Debra
-Requirements Debra1, Alcoholic, AlcoholicOpt
+Requirements Debra1, AlcoholicOpt
 Text Debra rolls her eyes. "Fine. Why don't you ask that woman over there where the bar is."
 
 Id Debra7
