@@ -1,20 +1,43 @@
 LOCATIONS
 Name Home
-SubLocations None
+SubLocations
+
+Name Front Desk
+SubLocations
+
+Name Stacks
+SubLocations
 
 Name Library
 SubLocations Front Desk, Stacks
 
 Name Store
-SubLocations None
+SubLocations
 
 Name Gas Station
-SubLocations None
+SubLocations
+
+Name Classroom
+SubLocations
+
+Name Dance Room
+SubLocations
+
+Name Office
+SubLocations
 
 Name Elementary School
 SubLocations Classroom, Dance Room, Office
 
 Name Reese Home
+SubLocations
+
+Name Bus Stop
+SubLocations
+
+Name Mo's Diner
+SubLocations
+
 ENDLOCATIONS
 
 PEOPLE
