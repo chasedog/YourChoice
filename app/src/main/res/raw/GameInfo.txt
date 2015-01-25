@@ -1,0 +1,81 @@
+LOCATIONS
+Name Home
+SubLocations None
+
+Name Library
+SubLocations Front Desk, Stacks
+
+Name Store
+SubLocations None
+
+Name Gas Station
+SubLocations None
+
+Name Elementary School
+SubLocations Classroom, Dance Room, Office
+
+Name Reese Home
+ENDLOCATIONS
+
+PEOPLE
+FirstName Tim
+LastName Reese
+Gender M
+Age 35
+
+FirstName Veronique
+LastName Reese
+Gender F
+Age 30
+
+FirstName Ellie
+LastName Reese
+Gender F
+Age 5
+
+FirstName Beth
+LastName Montgommery
+Gender F
+Age 72
+
+FirstName Tony
+LastName Montgommery
+Gender M
+Age 17
+
+FirstName Shangela
+LastName Jones
+Gender F
+Age 28
+
+FirstName Leonard
+LastName Tucker
+Gender M
+Age 32
+
+FirstName Wade
+LastName LaGuardia
+Gender M
+Age 56
+
+FirstName Maria
+LastName Santiago
+Gender F
+Age 22
+
+FirstName Penelope
+LastName Santiago
+Gender F
+Age 16
+
+FirstName Esmerelda
+LastName Santiago
+Gender F
+Age 42
+
+FirstName Debra
+LastName Collins
+Gender F
+Age 19
+
+ENDPEOPLE
