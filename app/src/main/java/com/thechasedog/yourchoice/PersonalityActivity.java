@@ -76,6 +76,7 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 ReadInput ri = new ReadInput(PersonalityActivity.this);
                 game = ri.getGame();
                 game.allDialogues = ri.getDialogues();
+                game.options = ri.getOptions();
 
                 for (Location loc : game.locations) {
                     Log.d(loc.name, loc.toString());

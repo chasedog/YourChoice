@@ -27,13 +27,14 @@ public class ReadInput {
         this.context = context;
     }
 
-    public void getOptions() {
+    public ArrayList<Option> getOptions() {
         Mode mode = Mode.None;
-
+        Option option = new Option();
         String command;
         String value;
         BufferedReader br;
 
+        ArrayList<Option> options = new ArrayList<Option>();
 
         try {
             InputStream is = context.getResources().openRawResource(R.raw.options);
@@ -41,7 +42,7 @@ public class ReadInput {
             String line;
             String[] toks;
             while ((line = br.readLine()) != null) {
-                toks = line.split(" ", 2);
+                toks = line.split(" ", 1);
                 if (toks.length > 0) {
                     command = toks[0];
                     if (toks.length > 1) {
@@ -58,12 +59,35 @@ public class ReadInput {
 
 
                 if (mode == Mode.None) {
-                    if (command.equals("Options")) {
+                    if (command.equals("OPTIONS")) {
                         mode = Mode.Options;
                     }
+                    else if(command.equals("ENDOPTIONS"))
+                    {
+                        mode = Mode.None;
+                    }
                 }
+                /*Id Leave1
+                Requirements
+                Modifiers LocMap
+                Text Leave */
                 else if (mode == Mode.Options) {
-
+                    if (command.equals("Id")) {
+                        option.id = value;
+                    }
+                    else if (command.equals("Requirements")) {
+                        option.requirements = Arrays.asList(value.split(", "));
+                    }
+                    else if (command.equals("Modifiers")) {
+                        option.modifiers = Arrays.asList(value.split(", "));
+                    }
+                    else if (command.equals("Text")) {
+                        option.text = value;
+                    }
+                    else if (command.equals("") && option.id != null) {
+                        options.add(option);
+                        option = new Option();
+                    }
                 }
 
             }
@@ -72,6 +96,7 @@ public class ReadInput {
         catch (IOException e) {
 
         }
+        return options;
     }
 
     public ArrayList<Dialogue> getDialogues() {

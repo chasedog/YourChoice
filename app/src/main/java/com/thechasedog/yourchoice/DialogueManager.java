@@ -19,7 +19,7 @@ public class DialogueManager {
         //Get all dialogues
         allDialogues = PersonalityActivity.game.allDialogues;
         //Get all the options
-        //allOptions =
+        allOptions = PersonalityActivity.game.options;
 
         permRequirements = new ArrayList<String>();
         tempRequirements = new ArrayList<String>();

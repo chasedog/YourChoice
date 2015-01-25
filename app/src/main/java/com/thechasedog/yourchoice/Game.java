@@ -10,6 +10,7 @@ public class Game {
     public List<NonPlayer> people;
     public Player player;
     public List<Dialogue> allDialogues;
+    public List<Option> options;
 
 
     public Game() {
