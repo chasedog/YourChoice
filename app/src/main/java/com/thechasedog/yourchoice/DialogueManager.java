@@ -164,13 +164,16 @@ public class DialogueManager {
         if (tempRequirements.contains("PresentDebra")) {
             tempRequirements.remove("PresentDebra");
         }
-
         if (permRequirements.contains("AtBusStop") && (PersonalityActivity.game.time == Game.TimeOfDay.MORNING || PersonalityActivity.game.time == Game.TimeOfDay.NOON)) {
             tempRequirements.add("PresentEsmerelda");
         }
 
         if (permRequirements.contains("AtBusStop") || permRequirements.contains("AtHome")) {
             tempRequirements.add("PresentDebra");
+        }
+
+        if (maxDialogue instanceof LocationDialogue && maxDialogue.requirements.contains("AtBusStop")) {
+            dialogueImage.setImageResource(R.drawable.busstop);
         }
 
 
