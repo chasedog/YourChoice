@@ -12,14 +12,16 @@
      android:id="@+id/textView2"
      android:layout_alignParentTop="true"
      android:layout_centerHorizontal="true"
-     android:layout_marginTop="46dp"/>
+     android:layout_marginTop="46dp"
+     android:layout_gravity="center_horizontal"/>
 
    <RadioGroup
-     android:layout_width="483dp"
+     android:layout_width="400dp"
      android:layout_height="wrap_content"
      android:orientation="horizontal"
      android:layout_below="@+id/textView2"
-     android:layout_alignStart="@+id/textView2">
+     android:layout_alignStart="@+id/textView2"
+     android:layout_gravity="center_horizontal">
 
       <RadioButton
         android:layout_width="wrap_content"
@@ -28,7 +30,6 @@
         android:id="@+id/radioButton2"
         android:layout_below="@+id/textView2"
         android:layout_alignEnd="@+id/textView2"
-        android:layout_marginEnd="102dp"
         android:checked="true"/>
 
       <RadioButton
@@ -48,12 +49,14 @@
      android:layout_height="wrap_content"
      android:textAppearance="?android:attr/textAppearanceLarge"
      android:text="Your personality traits (choose up to 3)"
-     android:id="@+id/textView3"/>
+     android:id="@+id/textView3"
+     android:layout_gravity="center_horizontal"/>
 
    <LinearLayout
      android:orientation="horizontal"
      android:layout_width="match_parent"
-     android:layout_height="wrap_content">
+     android:layout_height="wrap_content"
+     android:gravity="center_horizontal">
 
       <ToggleButton
         android:layout_width="wrap_content"
@@ -114,7 +117,8 @@
    <LinearLayout
      android:orientation="horizontal"
      android:layout_width="match_parent"
-     android:layout_height="wrap_content">
+     android:layout_height="wrap_content"
+     android:gravity="center_horizontal">
 
       <ToggleButton
         android:layout_width="wrap_content"
@@ -168,6 +172,7 @@
      android:layout_height="wrap_content"
      android:text="Start"
      android:id="@+id/startGame"
-     />
+     android:gravity="center_horizontal"
+     android:layout_gravity="right"/>
 
 </LinearLayout>
