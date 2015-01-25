@@ -46,7 +46,32 @@ Text "C'mon, let's go eat."
 Id Esme1
 People Esmerelda
 Requirements PresentEsmerelda, AtBusStop
-Text "Is there something you needed?"
+Text "Hello. My name is Esmerelda." She flips her long black hair. "Is there something I can do for you?"
+
+Id Esme2
+People Esmerelda
+Requirements AtBusStop, TalkingToEsmerelda, Esme1
+Text "There's a place called Mo's diner down the road."
+
+Id Esme3
+People Esmerelda
+Requirements AtBusStop, TalkingToEsmerelda, RomanticOpt
+Text "Why thank you, that's so kind. Where are you two from?"
+
+Id Esme4
+People Esmerelda
+Requirements AtBusStop, TalkingToEsmerelda, Esme1
+Text "I would just love it if you two could join me for tea once I get back from my little trip."
+
+Id Esme5
+People Esmerelda
+Requirements AtBusStop, PresentEsmerelda, AggressiveOpt
+Text She glares at you.
+
+Id Esme6
+People Esmerelda
+Requirements AtBusStop, TalkingToEsmerelda, AggressiveOpt
+Text She whips out her phone and dials 911. "Jim! I've been assaulted! There's a maniac at the bus stop! I demand that you send a car at once!" You can hear a man yelling through the phone. Esmerelda appears furious. "I AM NOT FAKING THIS TIME! THIS ISN'T A JOKE JIM! IMBECILE!" She throws her phone on the ground and smashes it with her foot.
 
 ENDPEOPLEDIALOGUES
 

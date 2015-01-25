@@ -152,7 +152,10 @@ public class DialogueManager {
             }
         }
 
-        tempRequirements.add(maxDialogue.id);
+
+        if (maxDialogue instanceof PeopleDialogue) {
+            tempRequirements.add(maxDialogue.id);
+        }
 
         if (tempRequirements.contains("PresentEsmerelda")) {
             tempRequirements.remove("PresentEsmerelda");

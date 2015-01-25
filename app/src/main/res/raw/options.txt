@@ -34,7 +34,7 @@ Text "I don't know where you're going, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
-Modifiers AggressiveOpt, Pic_Debra_Punched
+Modifiers AggressiveOpt, Pic_Debra_Punched, StopTalking
 Text Punch *
 
 Id Smart1
@@ -56,6 +56,16 @@ Id Shy2
 Requirements Shy, Debra2, TalkingToDebra, AtBusStop
 Modifiers ShyOpt, Mo'sDinerAvail, Pic_Debra_Neutral
 Text "Can't you ask her?"
+
+Id Shy3
+Requirements Shy, Esme3, TalkingToEsmerelda, AtBusStop
+Modifiers ShyOpt
+Text Shrug
+
+Id Eat2
+Requirements Esme1, TalkingToEsmerelda, AtBusStop
+Modifiers Mo'sDinerAvail, Pic_Esmerelda_Neutral
+Text "Do you know where we could find somewhere to eat?"
 
 Id Talk1
 Requirements Present*, Free
