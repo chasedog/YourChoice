@@ -7,8 +7,12 @@ Text Go to bed
 
 Id Leave1
 Requirements Free
-Modifiers LocMap
 Text Leave
+
+Id Bye1
+Requirements TalkingTo*
+Modifiers StopTalking
+Text Bye
 
 Id Idk1
 Requirements Debra1, TalkingToDebra, AtBusStop
@@ -55,6 +59,7 @@ Text "Can't you ask her?"
 
 Id Talk1
 Requirements Present*, Free
+Modifiers TalkingTo*
 Text Talk to *
 
 Id Wait1

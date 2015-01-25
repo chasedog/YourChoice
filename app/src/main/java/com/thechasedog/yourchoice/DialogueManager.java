@@ -86,6 +86,8 @@ public class DialogueManager {
                 break;
             }
         }
+
+        tempRequirements.add("Free");
     }
 
     public void wipeTempRequirements() {
@@ -144,41 +146,68 @@ public class DialogueManager {
                 }
             }
 
-            if (!isInvalid && currNumReqs > maxNumReqs && !(permRequirements.contains(dialogue.id))) {
+            if (!isInvalid && currNumReqs > maxNumReqs && !(tempRequirements.contains(dialogue.id))) {
                 maxDialogue = dialogue;
                 maxNumReqs = currNumReqs;
             }
         }
 
-        wipeTempRequirements();
+        tempRequirements.add(maxDialogue.id);
 
-        if (maxDialogue instanceof PeopleDialogue) {
-            tempRequirements.add("TalkingTo" + ((PeopleDialogue)maxDialogue).person.firstName);
-            tempRequirements.add(maxDialogue.id);
-
-            tempRequirements.remove("Free");
+        if (tempRequirements.contains("PresentEsmerelda")) {
+            tempRequirements.remove("PresentEsmerelda");
         }
-        else {
-            tempRequirements.add("Free");
-            for (String tempReq : tempRequirements) {
-                if (tempReq.contains("TalkingTo")) {
-                    tempRequirements.remove(tempReq);
-                }
-            }
+
+        if (tempRequirements.contains("PresentDebra")) {
+            tempRequirements.remove("PresentDebra");
+        }
+        if (permRequirements.contains("AtBusStop") && (PersonalityActivity.game.time == Game.TimeOfDay.MORNING || PersonalityActivity.game.time == Game.TimeOfDay.NOON)) {
+            tempRequirements.add("PresentEsmerelda");
+        }
+
+        if (permRequirements.contains("AtBusStop") || permRequirements.contains("AtHome")) {
+            tempRequirements.add("PresentDebra");
+        }
+
+        if (maxDialogue instanceof LocationDialogue && maxDialogue.requirements.contains("AtBusStop")) {
+            dialogueImage.setImageResource(R.drawable.busstop);
         }
 
 
         return maxDialogue;
     }
 
+    public void stopTalkingTo() {
+        List<String> reqsToRemove = new ArrayList<String>();
+        tempRequirements.add("Free");
+        for (String tempReq : tempRequirements) {
+            if (tempReq.contains("TalkingTo")) {
+                reqsToRemove.add(tempReq);
+            }
+        }
+
+        for (String req : reqsToRemove) {
+            tempRequirements.remove(req);
+        }
+    }
+
+    public void startTalkingTo(String name) {
+        tempRequirements.add("TalkingTo" + name);
+        if (tempRequirements.contains("Free")) {
+            tempRequirements.remove("Free");
+        }
+    }
+
     public List<Option> getOptions () {
         List<Option> currOptions = new ArrayList<Option>();
+        List<Option> wildCardOptions = new ArrayList<Option>();
         boolean isInvalid;
         boolean isWildCard;
 
         for (Option option : allOptions) {
             isInvalid = false;
             isWildCard = false;
+            wildCardOptions.clear();
 
             if (option.requirements != null) {
                 for (String req : option.requirements) {
@@ -189,12 +218,18 @@ public class DialogueManager {
                         for (String tempReq : tempRequirements) {
                             if (tempReq.contains(firstPart)) {
                                 name = tempReq.substring(firstPart.length());
-                                currOptions.add(new Option(option, name));
-                                break;
+                                wildCardOptions.add(new Option(option, name));
                             }
                         }
 
-                        isInvalid = (name == "");
+                        for (String tempReq : permRequirements) {
+                            if (tempReq.contains(firstPart)) {
+                                name = tempReq.substring(firstPart.length());
+                                wildCardOptions.add(new Option(option, name));
+                            }
+                        }
+
+                        isInvalid = (name.isEmpty());
                     } else {
                         if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
                             isInvalid = true;
@@ -204,8 +239,13 @@ public class DialogueManager {
                 }
             }
 
-            if (!isInvalid && !isWildCard) {
-                currOptions.add(option);
+            if (!isInvalid) {
+                if (isWildCard) {
+                    currOptions.addAll(wildCardOptions);
+                }
+                else {
+                    currOptions.add(option);
+                }
             }
         }
 
@@ -214,6 +254,14 @@ public class DialogueManager {
 
     public void selectOption (Option option) {
         if (option.modifiers != null) {
+            if (option.modifiers.contains("StopTalking")) {
+                stopTalkingTo();
+            }
+
+            if (option.modifiers.contains("TalkingTo*")) {
+                startTalkingTo(option.text.substring(("Talk to ").length()));
+            }
+
             for (String modifier : option.modifiers) {
                 if (modifier.startsWith("Pic_")) {
                     String[] toks = modifier.split("_");
@@ -226,7 +274,7 @@ public class DialogueManager {
                         dialogueImage.setImageResource(Images.getEsmerelda(type));
                     }
                 }
-                else {
+                else if (!(modifier.equals("TalkingTo*") || modifier.equals("StopTalking"))) {
                     tempRequirements.add(modifier);
                 }
             }
