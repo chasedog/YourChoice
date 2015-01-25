@@ -206,13 +206,19 @@ public class DialogueManager {
         List<Option> wildCardOptions = new ArrayList<Option>();
         boolean isInvalid;
         boolean isWildCard;
+        boolean notReq;
 
         for (Option option : allOptions) {
             isInvalid = false;
             isWildCard = false;
+            notReq = false;
             wildCardOptions.clear();
             if (option.requirements != null) {
                 for (String req : option.requirements) {
+                    notReq = req.contains("Not ");
+                    if (notReq) {
+                        req = req.substring(("Not ").length());
+                    }
                     if (req.contains("*")) {
                         isWildCard = true;
                         String firstPart = req.substring(0, req.indexOf('*'));
@@ -231,15 +237,19 @@ public class DialogueManager {
                             }
                         }
 
-                        if (req.contains("Not")) {
+                        if (notReq) {
                             isInvalid = !(name.isEmpty());
                         }
                         else {
                             isInvalid = (name.isEmpty());
                         }
                     } else {
-                        if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
-                            isInvalid = !req.contains("Not");
+                        if (!(tempRequirements.contains(req) || permRequirements.contains(req)) && !notReq) {
+                            isInvalid = true;
+                            break;
+                        }
+                        else if ((tempRequirements.contains(req) || permRequirements.contains(req)) && notReq) {
+                            isInvalid = true;
                             break;
                         }
                     }
