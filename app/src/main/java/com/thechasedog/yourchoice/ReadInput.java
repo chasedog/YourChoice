@@ -74,9 +74,9 @@ public class ReadInput {
         }
     }
 
-    public ArrayList<PeopleDialogue> getDialogues() {
+    public ArrayList<Dialogue> getDialogues() {
         PeopleDialogue pd = new PeopleDialogue();
-        ArrayList<PeopleDialogue> pds = new ArrayList<PeopleDialogue>();
+        ArrayList<Dialogue> pds = new ArrayList<Dialogue>();
         Mode mode = Mode.None;
 
         String command;
@@ -134,6 +134,7 @@ public class ReadInput {
                         pd.text = value;
                     }
                     else if (command.equals("") && pd.person != null) {
+                        pd.title = pd.person.firstName;
                         pds.add(pd);
                         pd = new PeopleDialogue();
                     }

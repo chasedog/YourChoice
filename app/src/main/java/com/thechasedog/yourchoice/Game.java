@@ -9,6 +9,7 @@ public class Game {
     public List<Location> locations;
     public List<NonPlayer> people;
     public Player player;
+    public List<Dialogue> allDialogues;
 
 
     public Game() {
