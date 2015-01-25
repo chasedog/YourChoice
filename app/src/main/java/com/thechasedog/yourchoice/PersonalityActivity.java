@@ -3,6 +3,7 @@ package com.thechasedog.yourchoice;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -69,6 +70,13 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
             @Override
             public void onClick(View v) {
                 Personality personality = getPersonality();
+                Game game = new ReadInput(PersonalityActivity.this).getGame();
+                for (Location loc : game.locations) {
+                    Log.d(loc.name, loc.toString());
+                }
+                for (Person person : game.people) {
+                    Log.d(person.firstName+ " " + person.lastName, person.age + " " + person.gender.toString());
+                }
                 startActivity(new Intent(PersonalityActivity.this, DialogueActivity.class));
             }
         });
