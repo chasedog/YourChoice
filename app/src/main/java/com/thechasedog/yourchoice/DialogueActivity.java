@@ -25,7 +25,7 @@ public class DialogueActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogue);
-        dialogueManager = new DialogueManager();
+        dialogueManager = new DialogueManager(PersonalityActivity.game.player);
         currentDialogue = dialogueManager.getNextDialogue();
 
         speakerText = (TextView)findViewById(R.id.speakerText);

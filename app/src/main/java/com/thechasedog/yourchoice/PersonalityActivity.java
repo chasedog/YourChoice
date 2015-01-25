@@ -15,7 +15,10 @@ import java.util.List;
 /**
  * Created by Chase Dog on 1/24/2015.
  */
+
 public class PersonalityActivity extends Activity implements CompoundButton.OnCheckedChangeListener{
+    public static Game game;
+
     public Button startGame;
     public ToggleButton alcoholicBtn;
     public ToggleButton aggressiveBtn;
@@ -70,13 +73,17 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
             @Override
             public void onClick(View v) {
                 Personality personality = getPersonality();
-                Game game = new ReadInput(PersonalityActivity.this).getGame();
+
+                game = new ReadInput(PersonalityActivity.this).getGame();
                 for (Location loc : game.locations) {
                     Log.d(loc.name, loc.toString());
                 }
                 for (Person person : game.people) {
                     Log.d(person.firstName+ " " + person.lastName, person.age + " " + person.gender.toString());
                 }
+
+                game.player = new Player("Mark", Person.Gender.MALE, 1, personality);
+
                 startActivity(new Intent(PersonalityActivity.this, DialogueActivity.class));
             }
         });
