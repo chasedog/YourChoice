@@ -82,7 +82,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         setTimeText(convertTimeToString(PersonalityActivity.game.time));
     }
 
-    public String convertTimeToString(Game.TimeOfDay time) {
+    public static String convertTimeToString(Game.TimeOfDay time) {
         switch (time) {
             case MORNING :
                 return "Morning";
