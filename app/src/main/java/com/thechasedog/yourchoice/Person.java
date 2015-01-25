@@ -6,13 +6,11 @@ package com.thechasedog.yourchoice;
 public class Person {
     public static enum Gender {MALE, FEMALE};
 
-    public Personality personality;
-    public String firstName;
-    public String lastName;
-    public int age;
-    public int emotion;
-    public Gender gender;
-    public int id;
+    protected String firstName;
+    protected String lastName;
+    protected int age;
+    protected Gender gender;
+    protected int id;
 
     public Person () {
 

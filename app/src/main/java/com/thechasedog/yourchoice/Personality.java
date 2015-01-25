@@ -3,7 +3,10 @@ package com.thechasedog.yourchoice;
 /**
  * Created by Chase Dog on 1/24/2015.
  */
+
 public class Personality {
+    public static enum Trait {ALCOHOLIC, AGGRESSIVE, BRAVE, CHILDISH, COMPETITIVE, HUMBLE, MISCHIEVOUS, ROMANTIC, SHY, SMART, TALKATIVE};
+
     public boolean alcoholic = false;
     public boolean aggressive = false;
     public boolean brave = false;
