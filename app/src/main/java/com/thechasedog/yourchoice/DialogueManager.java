@@ -88,12 +88,25 @@ public class DialogueManager {
             currNumReqs = 0;
             isInvalid = false;
             for (String req : dialogue.requirements) {
-                if (tempRequirements.contains(req) || permRequirements.contains(req)) {
-                    currNumReqs++;
+                if (req.contains("*")) {
+                    String firstPart = req.substring(0, req.indexOf('*'));
+                    String name = "";
+                    for (String tempReq : tempRequirements) {
+                        if (tempReq.contains(firstPart)) {
+                            name = tempReq.substring(firstPart.length());
+                            currNumReqs++;
+                        }
+                    }
+
+                    isInvalid = (name == "");
                 }
                 else {
-                    isInvalid = true;
-                    break;
+                    if (tempRequirements.contains(req) || permRequirements.contains(req)) {
+                        currNumReqs++;
+                    } else {
+                        isInvalid = true;
+                        break;
+                    }
                 }
             }
 
@@ -126,8 +139,20 @@ public class DialogueManager {
         for (Option option : allOptions) {
             isInvalid = false;
 
-            if (option.requirements != null) {
-                for (String req : option.requirements) {
+            for (String req : option.requirements) {
+                if (req.contains("*")) {
+                    String firstPart = req.substring(0, req.indexOf('*'));
+                    String name = "";
+                    for (String tempReq : tempRequirements) {
+                        if (tempReq.contains(firstPart)) {
+                            name = tempReq.substring(firstPart.length());
+                            currOptions.add(new Option(option, name));
+                        }
+                    }
+
+                    isInvalid = (name == "");
+                }
+                else {
                     if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
                         isInvalid = true;
                         break;

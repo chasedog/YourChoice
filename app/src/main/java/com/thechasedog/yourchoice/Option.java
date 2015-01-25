@@ -12,4 +12,10 @@ public class Option {
     public String text;
 
     public Option() {}
+    public Option(Option option, String name) {
+        this.id = option.id;
+        this.requirements = option.requirements;
+        this.modifiers = option.modifiers;
+        this.text = option.text.replace("*", name);
+    }
 }
