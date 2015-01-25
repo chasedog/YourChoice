@@ -159,7 +159,6 @@ public class DialogueManager {
             tempRequirements.remove("Free");
         }
         else {
-
             tempRequirements.add("Free");
             for (String tempReq : tempRequirements) {
                 if (tempReq.contains("TalkingTo")) {

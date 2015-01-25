@@ -20,6 +20,16 @@ public class Images {
     }
 
     public static int getEsmerelda(Type type) {
+        switch (type) {
+            case Happy:
+                return R.drawable.esmerelda_happy;
+            case Neutral:
+                return R.drawable.esmerelda_neutral;
+            case Mad:
+                return R.drawable.esmerelda_mad;
+            case Punched:
+                return  R.drawable.esmerelda_punched;
+        }
         return R.drawable.esmerelda_neutral;
     }
 }
