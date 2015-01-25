@@ -1,47 +1,60 @@
 LOCATIONS
 Name Bus Stop
 SubLocations
+ReqText AtBusStop
 
 Name Home
 SubLocations
+ReqText AtHome
 
 Name Front Desk
 SubLocations
 IsSub true
+ReqText AtFrontDesk
 
 Name Stacks
 SubLocations
 IsSub true
+ReqText AtStacks
 
 Name Library
 SubLocations Front Desk, Stacks
+ReqText AtLibrary
 
 Name Store
 SubLocations
+ReqText AtStore
 
 Name Gas Station
 SubLocations
+ReqText AtGasStation
 
 Name Classroom
 SubLocations
 IsSub true
+ReqText AtClassroom
 
 Name Dance Room
 SubLocations
 IsSub true
+ReqText AtDanceRoom
 
 Name Office
 SubLocations
 IsSub true
+ReqText AtOffice
 
 Name Elementary School
 SubLocations Classroom, Dance Room, Office
+ReqText AtElementarySchool
 
 Name Reese Home
 SubLocations
+ReqText AtReeseHome
 
 Name Mo's Diner
 SubLocations
+ReqText AtMo'sDiner
 
 ENDLOCATIONS
 

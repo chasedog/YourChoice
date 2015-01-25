@@ -15,4 +15,6 @@ public class LocationDialogue extends Dialogue{
         this.location = location;
         this.title = location.toString();
     }
+
+    public LocationDialogue() {}
 }

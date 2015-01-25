@@ -10,6 +10,7 @@ public class Location {
     public String name;
     public List<Location> subLocations;
     public boolean isSub;
+    public String reqText;
 
     public Location() {
         subLocations = new ArrayList<Location>();

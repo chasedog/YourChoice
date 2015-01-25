@@ -16,7 +16,7 @@ import java.util.Random;
  * Created by Chase Dog on 1/24/2015.
  */
 public class ReadInput {
-    private static enum Mode {None,People, Locations, Options, PeopleDialogues};
+    private static enum Mode {None,People, Locations, Options, PeopleDialogues, LocationDialogues};
     List<Location> locations;
     List<NonPlayer> people;
     Context context;
@@ -109,6 +109,7 @@ public class ReadInput {
 
     public ArrayList<Dialogue> getDialogues() {
         PeopleDialogue pd = new PeopleDialogue();
+        LocationDialogue ld = new LocationDialogue();
         ArrayList<Dialogue> pds = new ArrayList<Dialogue>();
         Mode mode = Mode.None;
 
@@ -118,7 +119,7 @@ public class ReadInput {
 
 
         try {
-            InputStream is = context.getResources().openRawResource(R.raw.peopledialogues);
+            InputStream is = context.getResources().openRawResource(R.raw.dialogues);
             br = new BufferedReader(new InputStreamReader(is));
             String line;
             String[] toks;
@@ -142,6 +143,9 @@ public class ReadInput {
                 if (mode == Mode.None) {
                     if (command.equals("PEOPLEDIALOGUES")) {
                         mode = Mode.PeopleDialogues;
+                    }
+                    else if (command.equals("LOCATIONDIALOGUES")) {
+                        mode = Mode.LocationDialogues;
                     }
                 }
                   /*Id Debra1
@@ -170,6 +174,34 @@ public class ReadInput {
                         pd.title = pd.person.firstName;
                         pds.add(pd);
                         pd = new PeopleDialogue();
+                    }
+                }
+                /*LOCATIONDIALOGUES
+                Id BusStop1
+                Location Bus Stop
+                Text You are*/
+                else if (mode == Mode.LocationDialogues) {
+                    if (command.equals("Id")) {
+                        ld.id = value;
+                    }
+                    else if (command.equals("Location")) {
+                        try {
+                            ld.location = getLocation(value);
+                        }
+                        catch (Exception ex) {
+                            Log.e("ReadInput", value + " not found");
+                        }
+                    }
+                    else if (command.equals("Text")) {
+                        ld.text = value;
+                    }
+                    else if (command.equals("Requirements")) {
+                        pd.requirements = Arrays.asList(value.split(", "));
+                    }
+                    else if (command.equals("") && ld.id != null) {
+                        ld.title = ld.location.name;
+                        pds.add(ld);
+                        ld = new LocationDialogue();
                     }
                 }
             }
@@ -270,6 +302,9 @@ public class ReadInput {
                     }
                     else if (command.equals("IsSub")) {
                         location.isSub = Boolean.valueOf(value);
+                    }
+                    else if (command.equals("ReqText")) {
+                        location.reqText = value;
                     }
                     else if (command.equals("")) {
                         locations.add(location);

@@ -41,7 +41,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         dialogueText = (TextView)findViewById(R.id.dialogueText);
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
         timeText = (TextView)findViewById(R.id.timeText);
-
+        dialogueManager.addPermReq(PersonalityActivity.game.currentLocation.reqText);
         updateScreen();
     }
 
@@ -109,6 +109,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         }
         dialogueManager.selectOption(curOption);
         if (curOption.modifiers.contains("LocMap")) {
+            dialogueManager.removeLocation(PersonalityActivity.game.currentLocation);
             Intent intent = new Intent(DialogueActivity.this, LocationActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);

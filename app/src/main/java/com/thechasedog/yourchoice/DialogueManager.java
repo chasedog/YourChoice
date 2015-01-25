@@ -214,4 +214,17 @@ public class DialogueManager {
             }
         }
     }
+
+    public void addPermReq(String perm) {
+        for (String p : permRequirements) {
+            if (p.equals(perm)) {
+                break;
+            }
+        }
+        permRequirements.add(perm);
+    }
+
+    public void removeLocation(Location location) {
+        permRequirements.remove(location.reqText);
+    }
 }
