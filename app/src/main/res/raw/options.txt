@@ -25,7 +25,7 @@ Text "Let's find somewhere to eat."
 
 Id Home1
 Requirements Debra1, TalkingToDebra, AtBusStop
-Modifiers HomeAvail
+Modifiers Avail Home
 Text "Let's go to our new place."
 
 Id Comp1
@@ -40,7 +40,7 @@ Text Punch *
 
 Id Smart1
 Requirements Smart, Debra1, TalkingToDebra, AtBusStop
-Modifiers SmartOpt, AllLocsAvail
+Modifiers SmartOpt, Avail AllLocs
 Text "I brought a map. Let's look at our options."
 
 Id Alcoholic1
@@ -55,7 +55,7 @@ Text "Can you ask the woman over there where we could eat?"
 
 Id Shy2
 Requirements Shy, Debra2, TalkingToDebra, AtBusStop
-Modifiers ShyOpt, Mo'sDinerAvail, Pic_Debra_Neutral
+Modifiers ShyOpt, Avail Mo's Diner, Pic_Debra_Neutral
 Text "Can't you ask her?"
 
 Id Shy3
@@ -65,7 +65,7 @@ Text Shrug
 
 Id Eat2
 Requirements Esme1, TalkingToEsmerelda, AtBusStop
-Modifiers Mo'sDinerAvail, Pic_Esmerelda_Neutral
+Modifiers Avail Mo's Diner, Pic_Esmerelda_Neutral
 Text "Do you know where we could find somewhere to eat?"
 
 Id Talk1

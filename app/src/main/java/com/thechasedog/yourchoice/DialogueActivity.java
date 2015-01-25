@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,31 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
                 break;
             }
         }
+
+        for (String modifier : curOption.modifiers) {
+            if (modifier.startsWith("Avail")) {
+                String loc = modifier.split(" ", 2)[1];
+                try {
+                    if (loc.equals("AllLocs")) {
+                        for (Location l : PersonalityActivity.game.locations) {
+                            if (!l.isSub && !PersonalityActivity.game.availableLocations.contains(l)) {
+                                PersonalityActivity.game.availableLocations.add(l);
+                            }
+                        }
+                    }
+                    else {
+                        Location location = LocationActivity.getLocation(PersonalityActivity.game.locations, loc);
+
+                        PersonalityActivity.game.availableLocations.add(location);
+                    }
+
+                }
+                catch (Exception ex) {
+                    Log.e("DialogueActivity", loc + " not found");
+                }
+            }
+        }
+
         dialogueManager.selectOption(curOption);
         if (curOption.modifiers.contains("LocMap")) {
             dialogueManager.removeLocation(PersonalityActivity.game.currentLocation);
