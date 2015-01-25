@@ -14,7 +14,15 @@ public class NonPlayer extends Person{
         this.age = age;
         this.emotionMeter = initEmotionMeter;
         this.id = id;
+        this.responseMultipliers = new double[Personality.Trait.values().length];
+        for (Personality.Trait trait:Personality.Trait.values()) {
+            this.responseMultipliers[trait.ordinal()] = 10 * Math.random() - 10 * Math.random();
+        }
+    }
 
+    public NonPlayer(int emotionMeter) {
+        this.emotionMeter = emotionMeter;
+        this.responseMultipliers = new double[Personality.Trait.values().length];
         for (Personality.Trait trait:Personality.Trait.values()) {
             this.responseMultipliers[trait.ordinal()] = 10 * Math.random() - 10 * Math.random();
         }

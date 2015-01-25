@@ -15,4 +15,6 @@ public class PeopleDialogue extends Dialogue {
         this.person = person;
         this.title = "???";
     }
+
+    public PeopleDialogue() {}
 }

@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Game {
     public List<Location> locations;
-    public List<Person> people;
+    public List<NonPlayer> people;
     public Player player;
 
 

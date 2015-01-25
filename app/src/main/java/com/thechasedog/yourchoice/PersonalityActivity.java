@@ -70,12 +70,17 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
             @Override
             public void onClick(View v) {
                 Personality personality = getPersonality();
-                Game game = new ReadInput(PersonalityActivity.this).getGame();
+                ReadInput ri = new ReadInput(PersonalityActivity.this);
+                Game game = ri.getGame();
+                ArrayList<PeopleDialogue> pds = ri.getDialogues();
                 for (Location loc : game.locations) {
                     Log.d(loc.name, loc.toString());
                 }
                 for (Person person : game.people) {
                     Log.d(person.firstName+ " " + person.lastName, person.age + " " + person.gender.toString());
+                }
+                for (PeopleDialogue p : pds) {
+                    Log.d("Dialogue to " + p.person.firstName, p.text);
                 }
                 startActivity(new Intent(PersonalityActivity.this, DialogueActivity.class));
             }

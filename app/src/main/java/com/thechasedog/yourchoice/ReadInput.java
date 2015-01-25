@@ -8,27 +8,150 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Chase Dog on 1/24/2015.
  */
 public class ReadInput {
-    private static enum Mode {None,People, Locations};
+    private static enum Mode {None,People, Locations, Options, PeopleDialogues};
     List<Location> locations;
-    List<Person> people;
+    List<NonPlayer> people;
     Context context;
 
     public ReadInput(Context context) {
-        people = new ArrayList<Person>(10);
+        people = new ArrayList<NonPlayer>(10);
         locations = new ArrayList<Location>(10);
         this.context = context;
+    }
+
+    public void getOptions() {
+        Mode mode = Mode.None;
+
+        String command;
+        String value;
+        BufferedReader br;
+
+
+        try {
+            InputStream is = context.getResources().openRawResource(R.raw.options);
+            br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            String[] toks;
+            while ((line = br.readLine()) != null) {
+                toks = line.split(" ", 2);
+                if (toks.length > 0) {
+                    command = toks[0];
+                    if (toks.length > 1) {
+                        value = toks[1];
+                    }
+                    else {
+                        value = "(none)";
+                    }
+                }
+                else {
+                    command = "";
+                    value = "(none)";
+                }
+
+
+                if (mode == Mode.None) {
+                    if (command.equals("Options")) {
+                        mode = Mode.Options;
+                    }
+                }
+                else if (mode == Mode.Options) {
+
+                }
+
+            }
+            br.close();
+        }
+        catch (IOException e) {
+
+        }
+    }
+
+    public ArrayList<PeopleDialogue> getDialogues() {
+        PeopleDialogue pd = new PeopleDialogue();
+        ArrayList<PeopleDialogue> pds = new ArrayList<PeopleDialogue>();
+        Mode mode = Mode.None;
+
+        String command;
+        String value;
+        BufferedReader br;
+
+
+        try {
+            InputStream is = context.getResources().openRawResource(R.raw.peopledialogues);
+            br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            String[] toks;
+            while ((line = br.readLine()) != null) {
+                toks = line.split(" ", 2);
+                if (toks.length > 0) {
+                    command = toks[0];
+                    if (toks.length > 1) {
+                        value = toks[1];
+                    }
+                    else {
+                        value = "(none)";
+                    }
+                }
+                else {
+                    command = "";
+                    value = "(none)";
+                }
+
+
+                if (mode == Mode.None) {
+                    if (command.equals("PEOPLEDIALOGUES")) {
+                        mode = Mode.PeopleDialogues;
+                    }
+                }
+                  /*Id Debra1
+                    People Debra
+                    Requirements
+                    Text "What do we do now?"*/
+                else if (mode == Mode.PeopleDialogues) {
+                    if (command.equals("Id")) {
+                        pd.id = value;
+                    }
+                    else if (command.equals("People")) {
+                        try {
+                            pd.person = getPerson(value);
+                        }
+                        catch (PersonNotFound ex) {
+                            Log.e("PersonNotFound", value + " not found");
+                        }
+                    }
+                    else if (command.equals("Requirements")) {
+                        pd.requirements = Arrays.asList(value.split(", "));
+                    }
+                    else if (command.equals("Text")) {
+                        pd.text = value;
+                    }
+                    else if (command.equals("") && pd.person != null) {
+                        pds.add(pd);
+                        pd = new PeopleDialogue();
+                    }
+                }
+            }
+            br.close();
+        }
+        catch (IOException e) {
+
+        }
+        return pds;
     }
 
     public Game getGame() {
         Game game = new Game();
         Mode mode = Mode.None;
-        Person person = new Person();
+        Random random = new Random();
+        NonPlayer person = new NonPlayer(random.nextInt(41) - 20);
         Location location = new Location();
 
         String command;
@@ -64,6 +187,12 @@ public class ReadInput {
                         mode = Mode.Locations;
                     }
                 }
+                /* this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.age = age;
+        this.emotionMeter = initEmotionMeter;
+        this.id = id;*/
                 else if (mode == Mode.People) {
                     if (command.equals("FirstName")) {
                         person.firstName = value;
@@ -79,12 +208,12 @@ public class ReadInput {
                     }
                     else if (command.equals("")) {
                         people.add(person);
-                        person = new Person();
+                        person = new NonPlayer(random.nextInt(41) - 20);
                     }
                     else if (command.equals("ENDPEOPLE")) {
                         if (person.firstName != null) {
                             people.add(person);
-                            person = new Person();
+                            person = new NonPlayer(random.nextInt(41) - 20);
                         }
                         mode = Mode.None;
                     }
@@ -131,6 +260,21 @@ public class ReadInput {
 
     private class SubLocationNotFound extends Exception {
 
+    }
+
+    private class PersonNotFound extends Exception {
+
+    }
+
+    private NonPlayer getPerson(String name) throws PersonNotFound {
+        int index = 0;
+        for (NonPlayer p : people) {
+            if (name.equals(p.firstName)) {
+                return people.get(index);
+            }
+            index++;
+        }
+        throw new PersonNotFound();
     }
 
     private Location getLocation(String name) throws SubLocationNotFound {
