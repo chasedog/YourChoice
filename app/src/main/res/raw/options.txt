@@ -6,24 +6,25 @@ Modifiers NewDay
 Text Go to bed
 
 Id Leave1
+Requirements Free
 Modifiers LocMap
 Text Leave
 
 Id Idk1
-Requirements Debra1
+Requirements Debra1, TalkingToDebra, AtBusStop
 Text "I don't know."
 
 Id Eat1
-Requirements Debra1
+Requirements Debra1, TalkingToDebra, AtBusStop
 Text "Let's find somewhere to eat." 
 
 Id Home1
-Requirements Debra1
+Requirements Debra1, TalkingToDebra, AtBusStop
 Modifiers HomeAvail
 Text "Let's go to our new place."
 
 Id Comp1
-Requirements Competitive, Debra1
+Requirements Competitive, Debra1, TalkingToDebra, AtBusStop
 Modifiers CompetitiveOpt
 Text "I don't know where you're going, but I'm going somewhere without you."
 
@@ -33,22 +34,22 @@ Modifiers AggressiveOpt
 Text Punch *
 
 Id Smart1
-Requirements Smart, Debra1
+Requirements Smart, Debra1, TalkingToDebra, AtBusStop
 Modifiers SmartOpt, AllLocsAvail
 Text "I brought a map. Let's look at our options."
 
 Id Alcoholic1
-Requirements Alcoholic, Debra1
+Requirements Alcoholic, Debra1, TalkingToDebra, AtBusStop
 Modifiers AlcoholicOpt
 Text "I need a drink."
 
 Id Shy1
-Requirements Shy, Debra1
+Requirements Shy, Debra1, TalkingToDebra, AtBusStop
 Modifiers ShyOpt
 Text "Can you ask the woman over there where we could eat?"
 
 Id Shy2
-Requirements Shy, Debra2
+Requirements Shy, Debra2, TalkingToDebra, AtBusStop
 Modifiers ShyOpt, Mo'sDinerAvail
 Text "Can't you ask her?"
 
