@@ -1,0 +1,59 @@
+PEOPLEDIALOGUES
+Id Bedtime
+Requirements Bedtime
+Text It's late. Time to go to bed.
+
+Id Debra1
+People Debra
+Requirements AtBusStop
+Text "What do we do now?"
+
+Id Debra2
+People Debra
+Requirements Debra1, AtBusStop
+Text "Okay. Why don't you ask that lady over there where we can eat."
+
+Id Debra3
+People Debra
+Requirements Debra1, CompetitiveOpt, AtBusStop
+Text "Fine. You can find your own way to our new place then." Debra storms off.
+
+Id Debra4
+People Debra
+Requirements Debra1, AggressiveOpt, AtBusStop
+Text *Gasp* "You fucking asshole! What the hell! FINE! You're on your own fucker! I hate you!" Debra storms off.
+
+Id Debra5
+People Debra
+Requirements Debra1, ShyOpt, AtBusStop
+Text *Sigh* "Fine. Hold on." Debra goes over to the woman and chats with her briefly before returning. "You shouldn't be so shy. She's really very nice. Anyways she says there's a place just down the road called Mo's Diner. They have food and drinks. Let's go."
+
+Id Debra6
+People Debra
+Requirements Debra1, AlcoholicOpt, AtBusStop
+Text Debra rolls her eyes. "Fine. Why don't you ask that woman over there where the bar is."
+
+Id Debra7
+People Debra
+Requirements Debra1, HomeAvail, AtBusStop
+Text "Alright. Here's our new address. Let's go."
+
+Id Debra8
+People Debra
+Requirements Debra1, Mo'sDinerAvail, AtBusStop
+Text "C'mon, let's go eat."
+
+Id Esme1
+People Esmerelda
+Requirements PresentEsmerelda, AtBusStop
+Text "Is there something you needed?"
+
+ENDPEOPLEDIALOGUES
+
+LOCATIONDIALOGUES
+Id BusStop1
+Location Bus Stop
+Text You are dropped off at the bus stop with your younger sister Debra. There's another woman sitting on a bench with a huge suitcase, chewing gum and flipping through a magazine, waiting for the next bus.
+
+ENDLOCATIONDIALOGUES
+
