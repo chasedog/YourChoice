@@ -1,4 +1,8 @@
 PEOPLEDIALOGUES
+Id Bedtime
+Requirements Bedtime
+Text It's late. Time to go to bed.
+
 Id Debra1
 People Debra
 Text "What do we do now?"

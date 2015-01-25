@@ -15,6 +15,8 @@ public class DialogueManager {
     private List<String> tempRequirements;
     private List<String> permRequirements;
     static boolean firstDialogue = true;
+    private Dialogue bedDialogue;
+    private Option bedOption;
 
     public DialogueManager(Player player) {
         //Get all dialogues
@@ -68,10 +70,34 @@ public class DialogueManager {
         if (player.personality.talkative) {
             permRequirements.add("Talkative");
         }
+
+        for (Dialogue dialogue : allDialogues) {
+            if (dialogue.id.equals("Bedtime")) {
+                bedDialogue = dialogue;
+                break;
+            }
+        }
+
+        for (Option option : allOptions) {
+            if (option.id.equals("Bedtime")) {
+                bedOption = option;
+                break;
+            }
+        }
     }
 
     public void wipeTempRequirements() {
         tempRequirements.clear();
+    }
+
+    public Dialogue getBedDialogue() {
+        wipeTempRequirements();
+        tempRequirements.add("Bedtime");
+        return bedDialogue;
+    }
+
+    public Option getBedOption() {
+        return bedOption;
     }
 
     public void updateRequirements(List<String> newTempReqs, List<String> newPermReqs) {
@@ -122,9 +148,11 @@ public class DialogueManager {
             }
         }
 
+        wipeTempRequirements();
+
         if (maxDialogue instanceof PeopleDialogue) {
             tempRequirements.add("TalkingTo" + ((PeopleDialogue)maxDialogue).person.firstName);
-            permRequirements.add(maxDialogue.id);
+            tempRequirements.add(maxDialogue.id);
         }
         else {
             tempRequirements.add("Free");

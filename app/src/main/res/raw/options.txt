@@ -1,7 +1,11 @@
 OPTIONS
 
+Id Bedtime
+Requirements Bedtime
+Modifiers NewDay
+Text Go to bed
+
 Id Leave1
-Requirements
 Modifiers LocMap
 Text Leave
 
