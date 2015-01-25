@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by Chase Dog on 1/24/2015.
  */
@@ -17,17 +19,21 @@ public class DialogueActivity extends Activity {
     private TextView dialogueText;
     private LinearLayout choicesLayout;
     private Dialogue currentDialogue;
+    private DialogueManager dialogueManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogue);
+        dialogueManager = new DialogueManager();
+        currentDialogue = dialogueManager.getNextDialogue();
 
         speakerText = (TextView)findViewById(R.id.speakerText);
         dialogueText = (TextView)findViewById(R.id.dialogueText);
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
-        setSpeakerText("Katie Keim");
+        setSpeakerText(currentDialogue.title);
 
-        setDialogueText("Why don't you ask that lady over there where we can eat.");
+        setDialogueText(currentDialogue.text);
         choicesLayout.addView(getButton("I don't know what you're doing, but I'm going somewhere without you"));
         choicesLayout.addView(getButton("I don't know what you're doing, but I'm going somewhere without you"));
         choicesLayout.addView(getButton("I don't know what you're doing, but yeah I hate you"));
