@@ -38,6 +38,7 @@ public class LocationActivity extends Activity {
                     }
                 }
             });
+            addButton(button);
         }
 
 

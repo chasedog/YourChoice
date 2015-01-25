@@ -2,6 +2,7 @@ package com.thechasedog.yourchoice;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.Gravity;
@@ -85,7 +86,14 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
             }
         }
         dialogueManager.selectOption(curOption);
-        updateScreen();
+        if (curOption.modifiers.contains("LocMap")) {
+            Intent intent = new Intent(DialogueActivity.this, LocationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+        }
+        else {
+            updateScreen();
+        }
     }
 
     public void setSpeakerText(String text) {
