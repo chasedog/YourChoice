@@ -34,9 +34,10 @@ public class DialogueActivity extends Activity {
         setSpeakerText(currentDialogue.title);
 
         setDialogueText(currentDialogue.text);
-        choicesLayout.addView(getButton("I don't know what you're doing, but I'm going somewhere without you"));
-        choicesLayout.addView(getButton("I don't know what you're doing, but I'm going somewhere without you"));
-        choicesLayout.addView(getButton("I don't know what you're doing, but yeah I hate you"));
+        List<Option> options = dialogueManager.getOptions();
+        for (Option option : options) {
+            choicesLayout.addView(getButton(option.text));
+        }
     }
 
     public Button getButton(String text) {
