@@ -175,6 +175,9 @@ public class ReadInput {
                         pds.add(pd);
                         pd = new PeopleDialogue();
                     }
+                    else if (command.equals("ENDPEOPLEDIALOGUES")) {
+                        mode = Mode.None;
+                    }
                 }
                 /*LOCATIONDIALOGUES
                 Id BusStop1
@@ -196,13 +199,14 @@ public class ReadInput {
                         ld.text = value;
                     }
                     else if (command.equals("Requirements")) {
-                        pd.requirements = Arrays.asList(value.split(", "));
+                        ld.requirements = Arrays.asList(value.split(", "));
                     }
                     else if (command.equals("") && ld.id != null) {
                         ld.title = ld.location.name;
                         pds.add(ld);
                         ld = new LocationDialogue();
                     }
+
                 }
             }
             br.close();

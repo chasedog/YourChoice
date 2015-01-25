@@ -5,7 +5,7 @@ Text It's late. Time to go to bed.
 
 Id Debra1
 People Debra
-Requirements AtBusStop
+Requirements AtBusStop, TalkingToDebra
 Text "What do we do now?"
 
 Id Debra2
@@ -53,6 +53,7 @@ ENDPEOPLEDIALOGUES
 LOCATIONDIALOGUES
 Id BusStop1
 Location Bus Stop
+Requirements AtBusStop
 Text You are dropped off at the bus stop with your younger sister Debra. There's another woman sitting on a bench with a huge suitcase, chewing gum and flipping through a magazine, waiting for the next bus.
 
 ENDLOCATIONDIALOGUES

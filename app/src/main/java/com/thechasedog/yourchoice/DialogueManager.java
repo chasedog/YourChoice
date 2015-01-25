@@ -153,6 +153,8 @@ public class DialogueManager {
         if (maxDialogue instanceof PeopleDialogue) {
             tempRequirements.add("TalkingTo" + ((PeopleDialogue)maxDialogue).person.firstName);
             tempRequirements.add(maxDialogue.id);
+
+            tempRequirements.remove("Free");
         }
         else {
             tempRequirements.add("Free");
@@ -162,6 +164,8 @@ public class DialogueManager {
                 }
             }
         }
+
+        if (permRequirements)
 
         return maxDialogue;
     }
