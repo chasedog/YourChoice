@@ -1,5 +1,6 @@
 package com.thechasedog.yourchoice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,8 +13,9 @@ public class Game {
     public List<Dialogue> allDialogues;
     public List<Option> options;
     public Location currentLocation;
+    public List<Location> availableLocations;
 
     public Game() {
-
+        availableLocations = new ArrayList<Location>();
     }
 }

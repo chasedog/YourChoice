@@ -24,7 +24,7 @@ public class LocationActivity extends Activity {
 
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
 
-        for (Location loc : PersonalityActivity.game.locations) {
+        for (Location loc : PersonalityActivity.game.availableLocations) {
             Button button = getButton(loc.name);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,11 +59,11 @@ public class LocationActivity extends Activity {
         return button;
     }
 
-    private class LocationNotFound extends Exception {
+    public static class LocationNotFound extends Exception {
 
     }
 
-    private Location getLocation(List<Location> locations, String name) throws LocationNotFound {
+    public static Location getLocation(List<Location> locations, String name) throws LocationNotFound {
         int index = 0;
         for (Location loc : locations) {
             if (name.equals(loc.name)) {
