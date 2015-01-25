@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,15 @@ import java.util.Random;
  */
 public class LocationActivity extends Activity {
     LinearLayout choicesLayout;
+    TextView timeText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_layout);
 
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
-
+        timeText = (TextView)findViewById(R.id.timeText);
+        setTimeText(DialogueActivity.convertTimeToString(PersonalityActivity.game.time));
         for (Location loc : PersonalityActivity.game.availableLocations) {
             Button button = getButton(loc.name);
             button.setOnClickListener(clickListener);
@@ -54,6 +57,10 @@ public class LocationActivity extends Activity {
         });
         addButton(button);
 
+    }
+
+    public void setTimeText(String text) {
+        timeText.setText(text);
     }
 
     private View.OnClickListener clickListener = new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.thechasedog.yourchoice;
 
 import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,14 @@ public class DialogueManager {
     static boolean firstDialogue = true;
     private Dialogue bedDialogue;
     private Option bedOption;
+    private ImageView dialogueImage;
 
-    public DialogueManager(Player player) {
+    public DialogueManager(Player player, ImageView dialogueImage) {
         //Get all dialogues
         allDialogues = PersonalityActivity.game.allDialogues;
         //Get all the options
         allOptions = PersonalityActivity.game.options;
-
+        this.dialogueImage = dialogueImage;
         permRequirements = new ArrayList<String>();
         tempRequirements = new ArrayList<String>();
 
@@ -168,6 +170,7 @@ public class DialogueManager {
             tempRequirements.add("PresentDebra");
         }
 
+
         return maxDialogue;
     }
 
@@ -257,7 +260,18 @@ public class DialogueManager {
             }
 
             for (String modifier : option.modifiers) {
-                if (!(modifier.equals("TalkingTo*") || modifier.equals("StopTalking"))) {
+                if (modifier.startsWith("Pic_")) {
+                    String[] toks = modifier.split("_");
+                    String person = toks[1];
+                    Images.Type type = Images.Type.valueOf(toks[2]);
+                    if (person.equals("Debra")) {
+                        dialogueImage.setImageResource(Images.getDebra(type));
+                    }
+                    else if (person.equals("Esmerelda")) {
+                        dialogueImage.setImageResource(Images.getEsmerelda(type));
+                    }
+                }
+                else if (!(modifier.equals("TalkingTo*") || modifier.equals("StopTalking"))) {
                     tempRequirements.add(modifier);
                 }
             }

@@ -12,7 +12,7 @@
       <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/debra_punched"
+        android:id="@+id/dialoguePic"
         android:paddingTop="10dp"/>
       <TextView
         android:layout_width="600dp"
