@@ -30,6 +30,8 @@ public class ReadInput {
     public ArrayList<Option> getOptions() {
         Mode mode = Mode.None;
         Option option = new Option();
+        option.requirements = new ArrayList<String>();
+        option.modifiers = new ArrayList<String>();
         String command;
         String value;
         BufferedReader br;
@@ -72,21 +74,27 @@ public class ReadInput {
                 Modifiers LocMap
                 Text Leave */
                 else if (mode == Mode.Options) {
-                    if (command.equals("Id")) {
-                        option.id = value;
-                    }
-                    else if (command.equals("Requirements")) {
-                        option.requirements = Arrays.asList(value.split(", "));
-                    }
-                    else if (command.equals("Modifiers")) {
-                        option.modifiers = Arrays.asList(value.split(", "));
-                    }
-                    else if (command.equals("Text")) {
-                        option.text = value;
+                    if (!value.equals("(none)")) {
+                        if (command.equals("Id")) {
+                            option.id = value;
+                        } else if (command.equals("Requirements")) {
+                            option.requirements = Arrays.asList(value.split(", "));
+                        } else if (command.equals("Modifiers")) {
+                            option.modifiers = Arrays.asList(value.split(", "));
+                        } else if (command.equals("Text")) {
+                            option.text = value;
+                        } else if (command.equals("") && option.id != null) {
+                            options.add(option);
+                            option = new Option();
+                            option.requirements = new ArrayList<String>();
+                            option.modifiers = new ArrayList<String>();
+                        }
                     }
                     else if (command.equals("") && option.id != null) {
                         options.add(option);
                         option = new Option();
+                        option.requirements = new ArrayList<String>();
+                        option.modifiers = new ArrayList<String>();
                     }
                 }
 

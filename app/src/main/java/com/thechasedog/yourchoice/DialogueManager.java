@@ -87,25 +87,26 @@ public class DialogueManager {
         for (Dialogue dialogue : allDialogues) {
             currNumReqs = 0;
             isInvalid = false;
-            for (String req : dialogue.requirements) {
-                if (req.contains("*")) {
-                    String firstPart = req.substring(0, req.indexOf('*'));
-                    String name = "";
-                    for (String tempReq : tempRequirements) {
-                        if (tempReq.contains(firstPart)) {
-                            name = tempReq.substring(firstPart.length());
-                            currNumReqs++;
+            if (dialogue.requirements != null) {
+                for (String req : dialogue.requirements) {
+                    if (req.contains("*")) {
+                        String firstPart = req.substring(0, req.indexOf('*'));
+                        String name = "";
+                        for (String tempReq : tempRequirements) {
+                            if (tempReq.contains(firstPart)) {
+                                name = tempReq.substring(firstPart.length());
+                                currNumReqs++;
+                            }
                         }
-                    }
 
-                    isInvalid = (name.isEmpty());
-                }
-                else {
-                    if (tempRequirements.contains(req) || permRequirements.contains(req)) {
-                        currNumReqs++;
+                        isInvalid = (name.isEmpty());
                     } else {
-                        isInvalid = true;
-                        break;
+                        if (tempRequirements.contains(req) || permRequirements.contains(req)) {
+                            currNumReqs++;
+                        } else {
+                            isInvalid = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -141,25 +142,26 @@ public class DialogueManager {
             isInvalid = false;
             isWildCard = false;
 
-            for (String req : option.requirements) {
-                if (req.contains("*")) {
-                    isWildCard = true;
-                    String firstPart = req.substring(0, req.indexOf('*'));
-                    String name = "";
-                    for (String tempReq : tempRequirements) {
-                        if (tempReq.contains(firstPart)) {
-                            name = tempReq.substring(firstPart.length());
-                            currOptions.add(new Option(option, name));
+            if (option.requirements != null) {
+                for (String req : option.requirements) {
+                    if (req.contains("*")) {
+                        isWildCard = true;
+                        String firstPart = req.substring(0, req.indexOf('*'));
+                        String name = "";
+                        for (String tempReq : tempRequirements) {
+                            if (tempReq.contains(firstPart)) {
+                                name = tempReq.substring(firstPart.length());
+                                currOptions.add(new Option(option, name));
+                                break;
+                            }
+                        }
+
+                        isInvalid = (name == "");
+                    } else {
+                        if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
+                            isInvalid = true;
                             break;
                         }
-                    }
-
-                    isInvalid = (name == "");
-                }
-                else {
-                    if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
-                        isInvalid = true;
-                        break;
                     }
                 }
             }
@@ -173,8 +175,10 @@ public class DialogueManager {
     }
 
     public void selectOption (Option option) {
-        for (String modifier : option.modifiers) {
-            tempRequirements.add(modifier);
+        if (option.modifiers != null) {
+            for (String modifier : option.modifiers) {
+                tempRequirements.add(modifier);
+            }
         }
     }
 }

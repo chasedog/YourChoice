@@ -7,12 +7,10 @@ Text Leave
 
 Id Idk1
 Requirements Debra1
-Modifiers
 Text "I don't know."
 
 Id Eat1
 Requirements Debra1
-Modifiers
 Text "Let's find somewhere to eat." 
 
 Id Home1
@@ -23,11 +21,11 @@ Text "Let's go to our new place."
 Id Comp1
 Requirements Competitive, Debra1
 Modifiers CompetitiveOpt
-Text "I don’t know what you’re doing, but I’m going somewhere without you."
+Text "I don't know what you're doing, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
-Modifiers
+Modifiers AggressiveOpt
 Text Punch *
 
 Id Smart1
@@ -52,7 +50,6 @@ Text "Can't you ask her?"
 
 Id Talk1
 Requirements Present*, Free
-Modifiers
 Text Talk to *
 
 Id Wait1
