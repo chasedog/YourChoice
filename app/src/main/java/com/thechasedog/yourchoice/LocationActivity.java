@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Chase Dog on 1/24/2015.
@@ -26,23 +27,49 @@ public class LocationActivity extends Activity {
 
         for (Location loc : PersonalityActivity.game.availableLocations) {
             Button button = getButton(loc.name);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        PersonalityActivity.game.currentLocation = getLocation(PersonalityActivity.game.locations, ((Button) v).getText().toString());
-                        startActivity(new Intent(LocationActivity.this, DialogueActivity.class));
-                    }
-                    catch (LocationNotFound ex) {
-                        Log.e("LocationActivity", "location not found");
-                    }
-                }
-            });
+            button.setOnClickListener(clickListener);
             addButton(button);
         }
 
+        final Button button = getButton("Wander");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random random = new Random();
+                List<Location> locs = PersonalityActivity.game.locations;
+                int count = 0;
+                while(count < 100) {
+                    int index = random.nextInt(locs.size());
+                    if (!locs.get(index).isSub && !PersonalityActivity.game.availableLocations.contains(locs.get(index))) {
+                        PersonalityActivity.game.availableLocations.add(locs.get(index));
+                        Button btn = getButton(locs.get(index).name);
+                        btn.setOnClickListener(clickListener);
+                        addButton(btn);
+                        button.setVisibility(View.GONE);
+                        break;
+                    }
+                    count++;
+                }
+            }
+        });
+        addButton(button);
 
     }
+
+    private View.OnClickListener clickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                PersonalityActivity.game.currentLocation = getLocation(PersonalityActivity.game.locations, ((Button) v).getText().toString());
+                startActivity(new Intent(LocationActivity.this, DialogueActivity.class));
+            }
+            catch (LocationNotFound ex) {
+                Log.e("LocationActivity", "location not found");
+            }
+        }
+    };
+
+
 
     private void addButton(Button button) {
 

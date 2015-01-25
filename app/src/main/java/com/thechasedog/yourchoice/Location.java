@@ -9,9 +9,11 @@ import java.util.List;
 public class Location {
     public String name;
     public List<Location> subLocations;
+    public boolean isSub;
 
     public Location() {
         subLocations = new ArrayList<Location>();
+        isSub = false;
     }
 
     @Override
@@ -21,5 +23,10 @@ public class Location {
             subs += "\n"+loc.name;
         }
         return name + subs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return name.equals(((Location)o).name);
     }
 }

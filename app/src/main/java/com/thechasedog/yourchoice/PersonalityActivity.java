@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
     public ToggleButton shyBtn;
     public ToggleButton smartBtn;
     public ToggleButton talkativeBtn;
+    public RadioGroup genderGroup;
 
     private List<CompoundButton> selectedBtns;
     private int numSelections = 0;
@@ -56,6 +59,7 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
         shyBtn = (ToggleButton)findViewById(R.id.personality_shy);
         smartBtn = (ToggleButton)findViewById(R.id.personality_smart);
         talkativeBtn = (ToggleButton)findViewById(R.id.personality_talkative);
+        genderGroup = (RadioGroup)findViewById(R.id.radioGender);
 
         alcoholicBtn.setOnCheckedChangeListener(this);
         aggressiveBtn.setOnCheckedChangeListener(this);
@@ -83,12 +87,6 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 }
                 else {
                     game.availableLocations.add(game.currentLocation);
-                    try {
-                        game.availableLocations.add(LocationActivity.getLocation(game.locations, "Home"));
-                    }
-                    catch (Exception ex) {
-                        Log.e("Home", "No home for you");
-                    }
                 }
 
 
@@ -106,7 +104,8 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 for (Option o : game.options) {
                     Log.d("Option", o.id + " " + o.text);
                 }
-                game.player = new Player("Mark", Person.Gender.MALE, 1, personality);
+                Person.Gender gender = genderGroup.getCheckedRadioButtonId() == R.id.radioMale ? Person.Gender.MALE : Person.Gender.FEMALE;
+                game.player = new Player("Mark", gender, 1, personality);
 
                 startActivity(new Intent(PersonalityActivity.this, DialogueActivity.class));
             }

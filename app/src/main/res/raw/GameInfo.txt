@@ -7,9 +7,11 @@ SubLocations
 
 Name Front Desk
 SubLocations
+IsSub true
 
 Name Stacks
 SubLocations
+IsSub true
 
 Name Library
 SubLocations Front Desk, Stacks
@@ -22,12 +24,15 @@ SubLocations
 
 Name Classroom
 SubLocations
+IsSub true
 
 Name Dance Room
 SubLocations
+IsSub true
 
 Name Office
 SubLocations
+IsSub true
 
 Name Elementary School
 SubLocations Classroom, Dance Room, Office

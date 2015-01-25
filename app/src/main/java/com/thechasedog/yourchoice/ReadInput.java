@@ -268,6 +268,9 @@ public class ReadInput {
                             }
                         }
                     }
+                    else if (command.equals("IsSub")) {
+                        location.isSub = Boolean.valueOf(value);
+                    }
                     else if (command.equals("")) {
                         locations.add(location);
                         location = new Location();
