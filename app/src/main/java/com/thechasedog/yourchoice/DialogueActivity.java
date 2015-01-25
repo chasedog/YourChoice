@@ -16,6 +16,7 @@ public class DialogueActivity extends Activity {
     private TextView speakerText;
     private TextView dialogueText;
     private LinearLayout choicesLayout;
+    private Dialogue currentDialogue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
