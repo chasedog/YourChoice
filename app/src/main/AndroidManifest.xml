@@ -17,6 +17,7 @@
       </activity>
       <activity android:name=".PersonalityActivity" />
       <activity android:name=".DialogueActivity" />
+      <activity android:name=".LocationActivity" />
    </application>
 
 </manifest>

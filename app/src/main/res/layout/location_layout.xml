@@ -37,14 +37,18 @@
         android:textSize="16pt"
         android:layout_gravity="center_horizontal"/>
 
+      <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+         <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="366dp"
+           android:layout_height="match_parent"
+           android:id="@+id/choicesLayout"
+           android:weightSum="1"></LinearLayout>
+        </ScrollView>
 
-      <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="366dp"
-        android:layout_height="match_parent"
-        android:id="@+id/choicesLayout"
-        android:weightSum="1">
 
-      </LinearLayout>
+
    </LinearLayout>
 </LinearLayout>
