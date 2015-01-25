@@ -211,7 +211,6 @@ public class DialogueManager {
             isInvalid = false;
             isWildCard = false;
             wildCardOptions.clear();
-
             if (option.requirements != null) {
                 for (String req : option.requirements) {
                     if (req.contains("*")) {
@@ -232,10 +231,15 @@ public class DialogueManager {
                             }
                         }
 
-                        isInvalid = (name.isEmpty());
+                        if (req.contains("Not")) {
+                            isInvalid = !(name.isEmpty());
+                        }
+                        else {
+                            isInvalid = (name.isEmpty());
+                        }
                     } else {
                         if (!(tempRequirements.contains(req) || permRequirements.contains(req))) {
-                            isInvalid = true;
+                            isInvalid = !req.contains("Not");
                             break;
                         }
                     }
@@ -276,6 +280,9 @@ public class DialogueManager {
                     else if (person.equals("Esmerelda")) {
                         dialogueImage.setImageResource(Images.getEsmerelda(type));
                     }
+                }
+                else if (modifier.equals("Punched*")) {
+                    tempRequirements.add("Punched" + option.text.substring(("Punch ").length()));
                 }
                 else if (!(modifier.equals("TalkingTo*") || modifier.equals("StopTalking"))) {
                     tempRequirements.add(modifier);

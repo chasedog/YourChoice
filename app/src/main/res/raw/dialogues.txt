@@ -70,7 +70,7 @@ Text She glares at you.
 
 Id Esme6
 People Esmerelda
-Requirements AtBusStop, TalkingToEsmerelda, AggressiveOpt
+Requirements AtBusStop, TalkingToEsmerelda, AggressiveOpt, PunchedEsmerelda
 Text She whips out her phone and dials 911. "Jim! I've been assaulted! There's a maniac at the bus stop! I demand that you send a car at once!" You can hear a man yelling through the phone. Esmerelda appears furious. "I AM NOT FAKING THIS TIME! THIS ISN'T A JOKE JIM! IMBECILE!" She throws her phone on the ground and smashes it with her foot.
 
 ENDPEOPLEDIALOGUES

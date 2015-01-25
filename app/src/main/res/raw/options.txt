@@ -7,6 +7,7 @@ Text Go to bed
 
 Id Leave1
 Requirements Free
+Modifiers LocMap
 Text Leave
 
 Id Bye1
@@ -15,7 +16,7 @@ Modifiers StopTalking
 Text Bye
 
 Id Idk1
-Requirements Debra1, TalkingToDebra, AtBusStop
+Requirements Debra1, TalkingToDebra, AtBusStop, Not Debra2
 Text "I don't know."
 
 Id Eat1
@@ -34,7 +35,7 @@ Text "I don't know where you're going, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
-Modifiers AggressiveOpt, Pic_Debra_Punched, StopTalking
+Modifiers AggressiveOpt, StopTalking, Punched*
 Text Punch *
 
 Id Smart1
