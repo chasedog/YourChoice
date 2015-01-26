@@ -5,81 +5,185 @@ Text It's late. Time to go to bed.
 
 Id Debra1
 People Debra
-Requirements AtBusStop, TalkingToDebra
+Requirements AtBusStop, TalkingToDebra, PresentDebra
 Text "What do we do now?"
 
 Id Debra2
 People Debra
-Requirements Debra1, AtBusStop
+Requirements Debra1, AtBusStop, PresentDebra, PresentEsmerelda, TalkingToDebra
 Text "Okay. Why don't you ask that lady over there where we can eat."
 
 Id Debra3
 People Debra
-Requirements Debra1, CompetitiveOpt, AtBusStop
+Requirements Debra1, CompetitiveOpt, AtBusStop, PresentDebra, TalkingToDebra
 Text "Fine. You can find your own way to our new place then." Debra storms off.
 
 Id Debra4
 People Debra
-Requirements Debra1, AggressiveOpt, AtBusStop
+Requirements Debra1, AggressiveOpt, AtBusStop, PunchedDebra, PresentDebra
 Text *Gasp* "You fucking asshole! What the hell! FINE! You're on your own fucker! I hate you!" Debra storms off.
 
 Id Debra5
 People Debra
-Requirements Debra1, ShyOpt, AtBusStop
+Requirements Debra1, ShyOpt, AtBusStop, PresentDebra, PresentEsmerelda, TalkingToDebra
 Text *Sigh* "Fine. Hold on." Debra goes over to the woman and chats with her briefly before returning. "You shouldn't be so shy. She's really very nice. Anyways she says there's a place just down the road called Mo's Diner. They have food and drinks. Let's go."
 
 Id Debra6
 People Debra
-Requirements Debra1, AlcoholicOpt, AtBusStop
+Requirements Debra1, AlcoholicOpt, AtBusStop, PresentDebra, PresentEsmerelda, TalkingToDebra
 Text Debra rolls her eyes. "Fine. Why don't you ask that woman over there where the bar is."
 
 Id Debra7
 People Debra
-Requirements Debra1, HomeAvail, AtBusStop
+Requirements Debra1, HomeAvail, AtBusStop, PresentDebra, TalkingToDebra
 Text "Alright. Here's our new address. Let's go."
 
 Id Debra8
 People Debra
-Requirements Debra1, Mo'sDinerAvail, AtBusStop
+Requirements Debra1, Mo'sDinerAvail, AtBusStop, PresentDebra, TalkingToDebra
 Text "C'mon, let's go eat."
 
 Id Esme1
 People Esmerelda
-Requirements PresentEsmerelda, AtBusStop
+Requirements PresentEsmerelda, AtBusStop, TalkingToEsmerelda, Not PunchedDebra
 Text "Hello. My name is Esmerelda." She flips her long black hair. "Is there something I can do for you?"
 
 Id Esme2
 People Esmerelda
-Requirements AtBusStop, TalkingToEsmerelda, Esme1
+Requirements AtBusStop, TalkingToEsmerelda, Esme1, PresentEsmerelda
 Text "There's a place called Mo's diner down the road."
 
 Id Esme3
 People Esmerelda
-Requirements AtBusStop, TalkingToEsmerelda, RomanticOpt
+Requirements AtBusStop, TalkingToEsmerelda, RomanticOpt, PresentEsmerelda
 Text "Why thank you, that's so kind. Where are you two from?"
 
 Id Esme4
 People Esmerelda
-Requirements AtBusStop, TalkingToEsmerelda, Esme1
+Requirements AtBusStop, TalkingToEsmerelda, Esme1, PresentEsmerelda, Not PunchedEsmerelda
 Text "I would just love it if you two could join me for tea once I get back from my little trip."
 
 Id Esme5
 People Esmerelda
-Requirements AtBusStop, PresentEsmerelda, AggressiveOpt
+Requirements AtBusStop, PresentEsmerelda, AggressiveOpt, TalkingToEsmerelda
 Text She glares at you.
 
 Id Esme6
 People Esmerelda
-Requirements AtBusStop, TalkingToEsmerelda, AggressiveOpt, PunchedEsmerelda
+Requirements AtBusStop, AggressiveOpt, PunchedEsmerelda, PresentEsmerelda
 Text She whips out her phone and dials 911. "Jim! I've been assaulted! There's a maniac at the bus stop! I demand that you send a car at once!" You can hear a man yelling through the phone. Esmerelda appears furious. "I AM NOT FAKING THIS TIME! THIS ISN'T A JOKE JIM! IMBECILE!" She throws her phone on the ground and smashes it with her foot.
+
+Id Pene1
+People Penelope
+Requirements AtMo'sDiner, TalkingToPenelope, PenelopePresent, Not PunchedPenelope
+Text "Hello! Sorry the kitchen isn't open right now. Something happened over at the laboratory up on the hill, and the whole town is on lockdown."
+
+Id Pene2
+People Penelope
+Requirements AtMo'sDiner, PenelopePresent, Not PunchedPenelope
+Text "Here you go!" She pours you a cup of coffee and then returns to her hostess stand.
+
+Id Pene3
+People Penelope
+Requirements AtMo'sDiner, PunchedPenelope, PenelopePresent
+Text "Stay away from me!" She sprints into the back of the restaurant.
+
+Id Pene4
+People Penelope
+Requirements AtMo'sDiner, PunchedTim, TalkingToPenelope, PenelopePresent
+Text "You should put ice on your eye. It looks like it's swelling."
+
+Id Tim1
+People Tim
+Requirements AtMo'sDiner, TalkingToTim, TimPresent
+Text He just stares at you.
+
+Id Tim2
+People Tim
+Requirements AtMo'sDiner, PunchedTim
+Text You try to punch the gruff man, but he dodges you easily and punches your eye instead. While you moan over your hurt eye and wounded ego, he silently walks away.
 
 ENDPEOPLEDIALOGUES
 
 LOCATIONDIALOGUES
 Id BusStop1
 Location Bus Stop
+Requirements AtBusStop, GameStart
+Text The bus just dropped you off at the bus stop with your sister Debra. There's another woman sitting on a bench with a huge suitcase, chewing gum and flipping through a magazine, waiting for the next bus.
+
+Id BusStop2
+Location Bus Stop
+Requirements AtBusStop, PresentDebra
+Text You are at the bus stop. Your sister Debra is here.
+
+Id BusStop3
+Location Bus Stop
+Requirements AtBusStop, PresentEsmerelda
+Text You are at the bus stop. There is a woman with long black hair sitting on a bench reading a magazine.
+
+Id BusStop4
+Location Bus Stop
 Requirements AtBusStop
-Text You are dropped off at the bus stop with your younger sister Debra. There's another woman sitting on a bench with a huge suitcase, chewing gum and flipping through a magazine, waiting for the next bus.
+Text You are at the bus stop alone.
+
+Id BusStop5
+Location Bus Stop
+Requirements AtBusStop, PresentDebra, PresentEsmerelda
+Text You are at the bus stop with your sister Debra. There's another woman sitting on a bench with a huge suitcase, chewing gum and flipping through a magazine, waiting for the next bus.
+
+Id Mo'sDiner1
+Location Mo's Diner
+Requirements AtMo'sDiner, PresentPenelope, PresentTim
+Text A diner with a giant neon sign stands before you. You see a young blonde woman waiting tables. She seems to be the only waitress in the place right now. There's also a gruff man sipping coffee at one of the tables.
+
+Id Mo'sDiner2
+Location Mo's Diner
+Requirements AtMo'sDiner, PresentPenelope
+Text A diner with a giant neon sign stands before you. You see a young blonde woman at the hostess stand. She seems to be the only waitress in the place right now.
+
+Id Mo'sDiner3
+Location Mo's Diner
+Requirements AtMo'sDiner, PresentTim
+Text A diner with a giant neon sign stands before you. A gruff man is smoking a cigarette outside.
+
+Id Mo'sDiner4
+Location Mo's Diner
+Requirements AtMo'sDiner
+Text A diner with a giant neon sign stands before you. It seems to be closed.
+
+Id Home1
+Location Home
+Requirements AtHome
+Text A clean, new apartment with a hideous brown carpet.
+
+Id GasStation1
+Location Gas Station
+Requirements AtGasStation
+Text A run down gas station. One of the two pumps is out of order. It seems to be closed.
+
+Id Library1
+Location Library
+Requirements AtLibrary
+Text A huge library stands before you. People in this town must read a lot... It seems to be closed.
+
+Id Store1
+Location Store
+Requirements AtStore
+Text A normal, boring grocery store. It's closed. Kinda odd for a grocery store to be closed these days...
+
+Id ReeseHome1
+Location Reese Home
+Requirements AtReeseHome
+Text A huge mansion with pink marble pillars. Wonder who lives here. No one is home.
+
+Id ElementarySchool1
+Location Elementary School
+Requirements AtElementarySchool
+Text A large, fairly mundane, brick elementary school. It's closed.
+
+Id Blank
+Location Bus Stop
+Text Now what?
 
 ENDLOCATIONDIALOGUES
 

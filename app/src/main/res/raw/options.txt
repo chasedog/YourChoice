@@ -73,6 +73,11 @@ Requirements Present*, Free
 Modifiers TalkingTo*
 Text Talk to *
 
+Id Coffee1
+Requirements Pene1, TalkingToPenelope, AtMo'sDiner
+Modifiers StopTalking
+Text "Coffee would be great."
+
 Id Wait1
 Requirements Free
 Modifiers IncrementTime
