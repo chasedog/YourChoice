@@ -12,7 +12,6 @@
       <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/debra_punched"
         android:paddingTop="10dp"/>
 
       <TextView

@@ -109,7 +109,7 @@ public class DialogueManager {
         permRequirements.addAll(newPermReqs);
     }
 
-    public Dialogue getNextDialogue() {
+    public Dialogue getNextDialogue(boolean hasImage) {
         if (firstDialogue) {
             firstDialogue = false;
         }
@@ -175,6 +175,7 @@ public class DialogueManager {
         if (maxDialogue instanceof LocationDialogue && maxDialogue.requirements.contains("AtBusStop")) {
             dialogueImage.setImageResource(R.drawable.busstop);
         }
+
 
 
         return maxDialogue;
@@ -269,12 +270,9 @@ public class DialogueManager {
         return currOptions;
     }
 
-    public void selectOption (Option option) {
+    public boolean selectOption (Option option) {
+        boolean hasImage = false;
         if (option.modifiers != null) {
-            if (option.modifiers.contains("StopTalking")) {
-                stopTalkingTo();
-            }
-
             if (option.modifiers.contains("TalkingTo*")) {
                 startTalkingTo(option.text.substring(("Talk to ").length()));
             }
@@ -286,19 +284,40 @@ public class DialogueManager {
                     Images.Type type = Images.Type.valueOf(toks[2]);
                     if (person.equals("Debra")) {
                         dialogueImage.setImageResource(Images.getDebra(type));
+                        hasImage = true;
                     }
                     else if (person.equals("Esmerelda")) {
                         dialogueImage.setImageResource(Images.getEsmerelda(type));
+                        hasImage = true;
                     }
                 }
                 else if (modifier.equals("Punched*")) {
                     tempRequirements.add("Punched" + option.text.substring(("Punch ").length()));
+                    for (String t : tempRequirements) {
+                        if (t.startsWith("TalkingTo")) {
+                            String person = t.substring("TalkingTo".length());
+                            if (person.equals("Debra") && option.text.substring(("Punch ").length()).equals("Debra")) {
+                                dialogueImage.setImageResource(Images.getDebra(Images.Type.Punched));
+                                hasImage = true;
+                                break;
+                            }
+                            else if (person.equals("Esmerelda") && option.text.substring(("Punch ").length()).equals("Esmerelda")) {
+                                dialogueImage.setImageResource(Images.getEsmerelda(Images.Type.Punched));
+                                hasImage = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (modifier.equals("StopTalking")) {
+                    stopTalkingTo();
                 }
                 else if (!(modifier.equals("TalkingTo*") || modifier.equals("StopTalking"))) {
                     tempRequirements.add(modifier);
                 }
             }
         }
+        return hasImage;
     }
 
     public void addPermReq(String perm) {

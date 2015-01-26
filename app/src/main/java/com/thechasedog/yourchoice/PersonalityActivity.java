@@ -82,12 +82,9 @@ public class PersonalityActivity extends Activity implements CompoundButton.OnCh
                 game.allDialogues = ri.getDialogues();
                 game.options = ri.getOptions();
                 game.currentLocation = game.locations.get(0);
-                if (personality.smart) {
-                    game.availableLocations = game.locations;
-                }
-                else {
-                    game.availableLocations.add(game.currentLocation);
-                }
+
+                game.availableLocations.add(game.currentLocation);
+
 
 
 

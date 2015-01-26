@@ -35,7 +35,7 @@ Text "I don't know where you're going, but I'm going somewhere without you."
 
 Id Agg1
 Requirements Aggressive, Debra1, TalkingTo*
-Modifiers AggressiveOpt, StopTalking, Punched*
+Modifiers AggressiveOpt, Punched*, StopTalking
 Text Punch *
 
 Id Smart1

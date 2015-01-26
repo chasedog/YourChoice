@@ -46,7 +46,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         choicesLayout = (LinearLayout)findViewById(R.id.choicesLayout);
         timeText = (TextView)findViewById(R.id.timeText);
         dialogueManager.addPermReq(PersonalityActivity.game.currentLocation.reqText);
-        updateScreen();
+        updateScreen(false);
     }
 
     public Button getButton(String text) {
@@ -60,8 +60,9 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         return button;
     }
 
-    public void updateScreen() {
-        currentDialogue = dialogueManager.getNextDialogue();
+    public void updateScreen(boolean hasImage) {
+        currentDialogue = dialogueManager.getNextDialogue(hasImage);
+
         setSpeakerText(currentDialogue.title);
         setDialogueText(currentDialogue.text);
         if (options != null) {
@@ -102,6 +103,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick (View view) {
+        boolean hasImage = false;
         numClicksPerDay++;
         String text = ((Button)view).getText().toString();
         Option curOption = options.get(0);
@@ -109,6 +111,16 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
             if (option.text.equals(text)) {
                 curOption = option;
                 break;
+            }
+        }
+
+        if (curOption.text.startsWith("Talk to")) {
+            String person = curOption.text.substring(("Talk to ").length());
+            if (person.equals("Debra")) {
+                dialogueImage.setImageResource(Images.getDebra(Images.Type.Neutral));
+            }
+            else if (person.equals("Esmerelda")) {
+                dialogueImage.setImageResource(Images.getEsmerelda(Images.Type.Neutral));
             }
         }
 
@@ -136,7 +148,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
             }
         }
 
-        dialogueManager.selectOption(curOption);
+        hasImage = dialogueManager.selectOption(curOption);
         if (curOption.modifiers.contains("LocMap")) {
             dialogueManager.removeLocation(PersonalityActivity.game.currentLocation);
             Intent intent = new Intent(DialogueActivity.this, LocationActivity.class);
@@ -144,7 +156,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
         else {
-            updateScreen();
+            updateScreen(hasImage);
         }
     }
 
