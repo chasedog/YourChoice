@@ -88,6 +88,7 @@ public class DialogueManager {
         }
 
         tempRequirements.add("Free");
+        tempRequirements.add("GameStart");
     }
 
     public void wipeTempRequirements() {
@@ -95,7 +96,6 @@ public class DialogueManager {
     }
 
     public Dialogue getBedDialogue() {
-        wipeTempRequirements();
         tempRequirements.add("Bedtime");
         return bedDialogue;
     }
@@ -109,22 +109,60 @@ public class DialogueManager {
         permRequirements.addAll(newPermReqs);
     }
 
-    public Dialogue getNextDialogue(boolean hasImage) {
-        if (firstDialogue) {
-            firstDialogue = false;
-        }
 
+    public Dialogue getNextDialogue() {
         int maxNumReqs = 0;
         Dialogue maxDialogue = allDialogues.get(0);
         int currNumReqs;
         boolean isInvalid;
+        boolean notReq;
+
+        if (tempRequirements.contains("PresentEsmerelda")) {
+            tempRequirements.remove("PresentEsmerelda");
+        }
+
+        if (tempRequirements.contains("PresentDebra")) {
+            tempRequirements.remove("PresentDebra");
+        }
+
+        if (tempRequirements.contains("PresentPenelope")) {
+            tempRequirements.remove("PresentPenelope");
+        }
+
+        if (tempRequirements.contains("PresentTim")) {
+            tempRequirements.remove("PresentTim");
+        }
+
+        if (permRequirements.contains("AtBusStop") && (PersonalityActivity.game.time == Game.TimeOfDay.MORNING || PersonalityActivity.game.time == Game.TimeOfDay.NOON) && !(tempRequirements.contains(("PunchedEsmerelda")))) {
+            tempRequirements.add("PresentEsmerelda");
+        }
+
+        if (!tempRequirements.contains("PunchedDebra") && !tempRequirements.contains("PunchedEsmerelda")) {
+            tempRequirements.add("PresentDebra");
+        }
+
+        if (permRequirements.contains("AtMo'sDiner") && PersonalityActivity.game.time == Game.TimeOfDay.NOON) {
+            tempRequirements.add("PresentTim");
+        }
+
+        if (permRequirements.contains("AtMo'sDiner")) {
+            tempRequirements.add("PresentPenelope");
+        }
 
         for (Dialogue dialogue : allDialogues) {
             currNumReqs = 0;
             isInvalid = false;
+            notReq = false;
             if (dialogue.requirements != null) {
                 for (String req : dialogue.requirements) {
-                    if (req.contains("*")) {
+                    notReq = req.contains("Not ");
+                    if (notReq) {
+                        req = req.substring(("Not ").length());
+                        if (tempRequirements.contains(req) || permRequirements.contains(req)) {
+                            isInvalid = true;
+                        }
+                    }
+                    else if (req.contains("*")) {
                         String firstPart = req.substring(0, req.indexOf('*'));
                         String name = "";
                         for (String tempReq : tempRequirements) {
@@ -146,7 +184,7 @@ public class DialogueManager {
                 }
             }
 
-            if (!isInvalid && currNumReqs > maxNumReqs && !(tempRequirements.contains(dialogue.id))) {
+            if (!isInvalid && currNumReqs > maxNumReqs && (!(dialogue instanceof PeopleDialogue) || !(tempRequirements.contains(dialogue.id)))) {
                 maxDialogue = dialogue;
                 maxNumReqs = currNumReqs;
             }
@@ -157,25 +195,15 @@ public class DialogueManager {
             tempRequirements.add(maxDialogue.id);
         }
 
-        if (tempRequirements.contains("PresentEsmerelda")) {
-            tempRequirements.remove("PresentEsmerelda");
-        }
 
-        if (tempRequirements.contains("PresentDebra")) {
-            tempRequirements.remove("PresentDebra");
-        }
-        if (permRequirements.contains("AtBusStop") && (PersonalityActivity.game.time == Game.TimeOfDay.MORNING || PersonalityActivity.game.time == Game.TimeOfDay.NOON)) {
-            tempRequirements.add("PresentEsmerelda");
-        }
-
-        if (permRequirements.contains("AtBusStop") || permRequirements.contains("AtHome")) {
-            tempRequirements.add("PresentDebra");
-        }
 
         if (maxDialogue instanceof LocationDialogue && maxDialogue.requirements.contains("AtBusStop")) {
             dialogueImage.setImageResource(R.drawable.busstop);
         }
 
+        if (tempRequirements.contains("GameStart")) {
+            tempRequirements.remove("GameStart");
+        }
 
 
         return maxDialogue;

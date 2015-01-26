@@ -28,7 +28,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     private TextView timeText;
     private LinearLayout choicesLayout;
     private Dialogue currentDialogue;
-    private DialogueManager dialogueManager;
+    private static DialogueManager dialogueManager;
     private TextView locationText;
     private List<Option> options;
     private static int numClicksPerDay = 0;
@@ -39,7 +39,9 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialogue);
         dialogueImage = (ImageView)findViewById(R.id.dialoguePic);
-        dialogueManager = new DialogueManager(PersonalityActivity.game.player, dialogueImage);
+        if (dialogueManager == null) {
+            dialogueManager = new DialogueManager(PersonalityActivity.game.player, dialogueImage);
+        }
         locationText = (TextView)findViewById(R.id.locationText);
         speakerText = (TextView)findViewById(R.id.speakerText);
         dialogueText = (TextView)findViewById(R.id.dialogueText);
@@ -61,7 +63,7 @@ public class DialogueActivity extends Activity implements View.OnClickListener {
     }
 
     public void updateScreen(boolean hasImage) {
-        currentDialogue = dialogueManager.getNextDialogue(hasImage);
+        currentDialogue = dialogueManager.getNextDialogue();
 
         setSpeakerText(currentDialogue.title);
         setDialogueText(currentDialogue.text);
